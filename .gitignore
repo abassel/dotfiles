@@ -1,0 +1,12 @@
+env/
+venv/
+infrastructure/ansible/local
+web/node_modules/
+web/static/bower_components
+node_modules/
+bower_components/
+*.pyc
+.idea/
+.cache/
+*/.DS_Store
+.DS_Store
