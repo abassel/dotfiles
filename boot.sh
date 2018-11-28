@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export _apps='tree lsof jq vim git wget crudini'
+export _apps='tree lsof jq vim git wget crudini bash-completion'
 
 function _install_all {
 
