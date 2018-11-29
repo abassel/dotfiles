@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export _apps='tree lsof jq vim git wget crudini bash-completion'
+export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper glances'
 
 function _install_all {
 
@@ -9,6 +9,10 @@ function _install_all {
 
     cd ~
     wget https://raw.githubusercontent.com/abassel/utilites/master/.vimrc
+
+    cd /etc/
+    etckeeper init
+    etckeeper commit -m "Initial checkin"
 
 }
 
