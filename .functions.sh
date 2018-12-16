@@ -5,7 +5,7 @@ export LXC_LOGS="True"
 function __end_note() {
     echo ""
 #    echo "type __help to list all commands"
-    echo "\n"
+    echo ""
 }
 
 function __wipe_all_logs() {
