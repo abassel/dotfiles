@@ -8,9 +8,9 @@ function __install_all {
     apt-get install -y $_apps || yum install -y $_apps
 
     cd ~
-    wget --backups=3 https://raw.githubusercontent.com/abassel/utilites/master/.vimrc
-    wget --backups=3 https://raw.githubusercontent.com/abassel/utilites/master/.bashrc
-    wget --backups=3 https://raw.githubusercontent.com/abassel/utilites/master/.functions.sh
+    wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.vimrc
+    wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.bashrc
+    wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.functions.sh
 
     source ~/.bashrc
 
