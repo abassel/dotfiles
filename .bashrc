@@ -97,6 +97,8 @@ alias l-nova='lxc-attach -n $(lxc-ls -1 | grep nova | sort | head -1 | tail -1)'
 alias l-util='lxc-attach -n $(lxc-ls -1 | grep util | sort | head -1 | tail -1)'
 
 
+
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -105,6 +107,20 @@ alias l-util='lxc-attach -n $(lxc-ls -1 | grep util | sort | head -1 | tail -1)'
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# Openstack lxc functions for AIO
+function l-barbican() {
+    lxc-attach -n $(lxc-ls -1 | grep barbican | sort | head -${1:-1} | tail -1)
+}
+
+function l-nova() {
+    lxc-attach -n $(lxc-ls -1 | grep noval | sort | head -${1:-1} | tail -1)
+}
+
+function l-util() {
+    lxc-attach -n $(lxc-ls -1 | grep util | sort | head -${1:-1} | tail -1)
+}
+
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
