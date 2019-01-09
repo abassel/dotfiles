@@ -92,9 +92,9 @@ alias gd='git diff'
 alias gca='commit --amend'
 
 # Openstack lxc aliases for AIO
-alias l-barbican='lxc-attach -n $(lxc-ls -1 | grep barbican)'
-alias l-nova='lxc-attach -n $(lxc-ls -1 | grep nova)'
-alias l-util='lxc-attach -n $(lxc-ls -1 | grep util)'
+alias l-barbican='lxc-attach -n $(lxc-ls -1 | grep barbican | sort | head -1 | tail -1)'
+alias l-nova='lxc-attach -n $(lxc-ls -1 | grep nova | sort | head -1 | tail -1)'
+alias l-util='lxc-attach -n $(lxc-ls -1 | grep util | sort | head -1 | tail -1)'
 
 
 # Alias definitions.
