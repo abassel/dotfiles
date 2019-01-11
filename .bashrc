@@ -134,3 +134,7 @@ fi
 
 # Vault cli support
 export VAULT_ADDR=http://127.0.0.1:8200
+
+# Extra stuff
+pip install Pygments
+alias ccat='pygmentize -g -O linenos=1'
