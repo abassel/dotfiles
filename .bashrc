@@ -91,11 +91,6 @@ alias gs='git status'
 alias gd='git diff'
 alias gca='commit --amend'
 
-# Openstack lxc aliases for AIO
-alias l-barbican='lxc-attach -n $(lxc-ls -1 | grep barbican)'
-alias l-nova='lxc-attach -n $(lxc-ls -1 | grep nova)'
-alias l-util='lxc-attach -n $(lxc-ls -1 | grep util)'
-
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -105,6 +100,20 @@ alias l-util='lxc-attach -n $(lxc-ls -1 | grep util)'
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# Openstack lxc functions for AIO
+function l-barbican() {
+    lxc-attach -n $(lxc-ls -1 | grep barbican | sort | head -${1:-1} | tail -1)
+}
+
+function l-nova() {
+    lxc-attach -n $(lxc-ls -1 | grep noval | sort | head -${1:-1} | tail -1)
+}
+
+function l-util() {
+    lxc-attach -n $(lxc-ls -1 | grep util | sort | head -${1:-1} | tail -1)
+}
+
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -122,3 +131,10 @@ fi
 if [ -f ~/.functions.sh ]; then
     . ~/.functions.sh
 fi
+
+# Vault cli support
+export VAULT_ADDR=http://127.0.0.1:8200
+
+# Extra stuff
+pip install Pygments
+alias ccat='pygmentize -g -O linenos=1'
