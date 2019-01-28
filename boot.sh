@@ -11,7 +11,7 @@ function __install_all {
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.vimrc
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.bashrc
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.functions.sh
-    wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.inputrc
+    # wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.inputrc
 
     source ~/.bashrc
 
