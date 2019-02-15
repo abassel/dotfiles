@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper glances colordiff telnet'
+export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper glances colordiff telnet sed'
 
 function __install_all {
+
+    # Remove timeout
+    sed '/TMOUT/d' file /etc/profile
 
     # Try to run in both Centos and Ubuntu
     apt-get install -y $_apps || yum install -y $_apps
