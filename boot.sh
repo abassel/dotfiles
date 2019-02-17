@@ -26,3 +26,4 @@ function __install_all {
 }
 
 __install_all;
+
