@@ -5,16 +5,20 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
+
+
+######### HISTORY section #########
+
+# https://www.shellhacks.com/tune-command-line-history-bash/
+
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+
+HISTSIZE=100000                 # the number of commands to remember in the command history (the default value is 500).
+HISTFILESIZE=100000             # the maximum number of lines contained in the history file (the default value is 500).
+export PROMPT_COMMAND='history -a;history -c;history -r'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
