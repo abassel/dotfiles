@@ -92,6 +92,19 @@ alias gd='git diff'
 alias gca='commit --amend'
 
 
+# Color man pages https://www.tecmint.com/view-colored-man-pages-in-linux/
+# export LESS_TERMCAP_mb=$'\e[1;32m'
+# export LESS_TERMCAP_md=$'\e[1;32m'
+# export LESS_TERMCAP_me=$'\e[0m'
+# export LESS_TERMCAP_se=$'\e[0m'
+# export LESS_TERMCAP_so=$'\e[01;33m'
+# export LESS_TERMCAP_ue=$'\e[0m'
+# export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+# https://www.2daygeek.com/2-easy-ways-to-get-color-man-pages-in-linux-using-less-most-command/#
+export PAGER='most'
+
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
