@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper glances colordiff telnet sed'
+export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper glances colordiff telnet sed most'
 
 function __install_all {
 
