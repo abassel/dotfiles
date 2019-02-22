@@ -6,7 +6,6 @@
 [ -z "$PS1" ] && return
 
 
-
 ######### HISTORY section #########
 
 # https://www.shellhacks.com/tune-command-line-history-bash/
@@ -105,7 +104,9 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-
+# Disable pager for systemd
+# https://unix.stackexchange.com/questions/343168/can-i-prevent-service-foo-status-from-paging-its-output-through-less
+export SYSTEMD_PAGER=''
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
