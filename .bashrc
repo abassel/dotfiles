@@ -15,8 +15,8 @@
 shopt -s histappend
 
 
-HISTSIZE=100000                 # the number of commands to remember in the command history (the default value is 500).
-HISTFILESIZE=100000             # the maximum number of lines contained in the history file (the default value is 500).
+HISTSIZE=                 # the number of commands to remember in the command history (the default value is 500).
+HISTFILESIZE=             # the maximum number of lines contained in the history file (the default value is 500).
 export PROMPT_COMMAND='history -a;history -c;history -r'
 
 # check the window size after each command and, if necessary,
