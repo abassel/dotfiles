@@ -6,7 +6,6 @@
 [ -z "$PS1" ] && return
 
 
-
 ######### HISTORY section #########
 
 # https://www.shellhacks.com/tune-command-line-history-bash/
@@ -16,8 +15,8 @@
 shopt -s histappend
 
 
-HISTSIZE=100000                 # the number of commands to remember in the command history (the default value is 500).
-HISTFILESIZE=100000             # the maximum number of lines contained in the history file (the default value is 500).
+HISTSIZE=                 # the number of commands to remember in the command history (the default value is 500).
+HISTFILESIZE=             # the maximum number of lines contained in the history file (the default value is 500).
 export PROMPT_COMMAND='history -a;history -c;history -r'
 
 # check the window size after each command and, if necessary,
@@ -105,7 +104,9 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-
+# Disable pager for systemd
+# https://unix.stackexchange.com/questions/343168/can-i-prevent-service-foo-status-from-paging-its-output-through-less
+export SYSTEMD_PAGER=''
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

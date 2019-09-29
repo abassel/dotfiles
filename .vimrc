@@ -26,7 +26,7 @@ set re=1
 set equalalways " Multiple windows, when created, are equal in size
 set splitbelow splitright
 
-# https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim
+" https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim
 set paste
 
 set mouse=a
