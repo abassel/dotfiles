@@ -24,6 +24,8 @@ function __install_all {
     vim -c 'PluginInstall' -c 'qa!'  # https://coderwall.com/p/etzycq/vundle-plugininstall-from-shell
     # Also vim +PluginInstall +qall  # https://www.reddit.com/r/bash/comments/8vw0t0/how_to_automatically_install_vundle_and_plugins/
 
+    # To be used by color cat ccat alias
+    pip install Pygments
 }
 
 __install_all;
