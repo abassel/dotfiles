@@ -5,7 +5,7 @@ export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper gl
 function __install_all {
 
     # Try to run in both Centos and Ubuntu
-    apt-get install -y $_apps || yum install -y $_apps
+    apt-get install -y $_apps || yum install -y $_apps || apk add $_apps
 
     # Remove timeout
     sed --in-place '/TMOUT/d' /etc/profile
