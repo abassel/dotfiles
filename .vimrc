@@ -1,5 +1,6 @@
 color desert
 
+syntax on
 
 set number
 set et
