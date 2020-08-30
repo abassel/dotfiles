@@ -20,8 +20,8 @@ function __install_all {
     source ~/.bashrc
 
     # vim plugin install
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    #vim -c 'PluginInstall' -c 'qa!'  # https://coderwall.com/p/etzycq/vundle-plugininstall-from-shell
+    # git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    # vim -c 'PluginInstall' -c 'qa!'  # https://coderwall.com/p/etzycq/vundle-plugininstall-from-shell
     # Also vim +PluginInstall +qall  # https://www.reddit.com/r/bash/comments/8vw0t0/how_to_automatically_install_vundle_and_plugins/
 
 }
