@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#/usr/bin/env bash
 
 export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper glances colordiff telnet sed' # python3-pip python3 python-pygments'
 
