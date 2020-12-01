@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper glances colordiff telnet sed' # python3-pip python3 python-pygments'
+export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper telnet sed screen tmux' # glances colordiff python3-pip python3 python-pygments'
 
 function __install_all {
 
