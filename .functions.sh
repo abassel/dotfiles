@@ -28,7 +28,7 @@ function __track_etc() {
 
     pushd /etc
     etckeeper init
-    etckeeper commit "commit at $(date +%Y-%m-%d %H:%M:%S)"
+    etckeeper commit "commit at $(date '+%Y-%m-%d %H:%M:%S')"
     popd
     __end_note
 }
