@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-export LXC_LOGS="True"
-
 function __end_note() {
     echo ""
 #    echo "type __help to list all commands"
@@ -57,4 +55,20 @@ function __help() {
     echo "__wipe_all_logs - wipe all your logs"
     echo "__track_etc - git init the /etc"
     echo ""
+}
+
+
+# Openstack lxc functions for AIO
+export LXC_LOGS="True"
+
+function l-barbican() {
+    lxc-attach -n $(lxc-ls -1 | grep barbican | sort | head -${1:-1} | tail -1)
+}
+
+function l-nova() {
+    lxc-attach -n $(lxc-ls -1 | grep noval | sort | head -${1:-1} | tail -1)
+}
+
+function l-util() {
+    lxc-attach -n $(lxc-ls -1 | grep util | sort | head -${1:-1} | tail -1)
 }

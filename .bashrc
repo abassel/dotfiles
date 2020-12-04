@@ -23,13 +23,13 @@ export PROMPT_COMMAND='history -a;history -c;history -r'
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# # make less more friendly for non-text input files, see lesspipe(1)
+# [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+# # set variable identifying the chroot you work in (used in the prompt below)
+# if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+#     debian_chroot=$(cat /etc/debian_chroot)
+# fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -53,7 +53,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="\n\[\033[1;34m\]\342\226\210\342\226\210 \u @ $SERVER_NAME""$BBlue"" \w""$Color_Off  \n\[\033[0;36m\]\342\226\210\342\226\210 \d \t $ \[\033[0;39m\]"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -72,9 +72,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -93,6 +90,9 @@ alias gl='git log'
 alias gs='git status'
 alias gd='git diff'
 alias gca='commit --amend'
+
+alias e='exit'
+alias c='clear'
 
 
 # Color man pages https://www.tecmint.com/view-colored-man-pages-in-linux/
@@ -116,20 +116,6 @@ export SYSTEMD_PAGER=''
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-# Openstack lxc functions for AIO
-function l-barbican() {
-    lxc-attach -n $(lxc-ls -1 | grep barbican | sort | head -${1:-1} | tail -1)
-}
-
-function l-nova() {
-    lxc-attach -n $(lxc-ls -1 | grep noval | sort | head -${1:-1} | tail -1)
-}
-
-function l-util() {
-    lxc-attach -n $(lxc-ls -1 | grep util | sort | head -${1:-1} | tail -1)
-}
-
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
