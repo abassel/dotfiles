@@ -27,17 +27,18 @@ PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
 
 __prompt_command() {
     local EXIT="$?"                      # This needs to be first
-    
-    local Red='\[\e[0;31m\]'
+
+    local Red='\[\e[1;31m\]'
     local Gre='\[\e[0;32m\]'
-    local LGREY='\e[2;37;40m'
+    local LGREY='\e[1;30m\]'
+    local BLACK='\e[0;30m\]'
     local BYel='\[\e[1;33m\]'
     local BBlu='\[\e[1;34m\]'
     local Pur='\[\e[0;35m\]'
     local RCol='\[\e[0m\]'
 
     CHAR="_"
-    LINECOLOR=$LGREY
+    LINECOLOR=$BLACK
     if [ $EXIT != 0 ]; then
         CHAR="@"
         LINECOLOR=$Red             # Add red if exit code non 0
