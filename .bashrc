@@ -23,50 +23,31 @@ export PROMPT_COMMAND='history -a;history -c;history -r'
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# # make less more friendly for non-text input files, see lesspipe(1)
-# [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
 
-# # set variable identifying the chroot you work in (used in the prompt below)
-# if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-#     debian_chroot=$(cat /etc/debian_chroot)
-# fi
+__prompt_command() {
+    local EXIT="$?"                      # This needs to be first
+    
+    local Red='\[\e[0;31m\]'
+    local Gre='\[\e[0;32m\]'
+    local LGREY='\e[2;37;40m'
+    local BYel='\[\e[1;33m\]'
+    local BBlu='\[\e[1;34m\]'
+    local Pur='\[\e[0;35m\]'
+    local RCol='\[\e[0m\]'
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
+    CHAR="_"
+    LINECOLOR=$LGREY
+    if [ $EXIT != 0 ]; then
+        CHAR="@"
+        LINECOLOR=$Red             # Add red if exit code non 0
     fi
-fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1="\n\[\033[1;34m\]\342\226\210\342\226\210 \u @ $SERVER_NAME""$BBlue"" \w""$Color_Off  \n\[\033[0;36m\]\342\226\210\342\226\210 \d \t $ \[\033[0;39m\]"
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+    HLINE=$(printf %"$COLUMNS"s | tr " " $CHAR)
+    PS1="\n${LINECOLOR}${HLINE}${RCol}\n"
+    PS1+="\n${BBlu}\342\226\210\342\226\210 \u @ \[\033[1;31m\]\h \[\033[1;34m\]\w\n\[\033[0;36m\]\342\226\210\342\226\210 jobs:\j $ \[\033[0;39m\]"
+}
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
