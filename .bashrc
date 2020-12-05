@@ -34,6 +34,7 @@ __prompt_command() {
     local BLACK='\e[0;30m\]'
     local BYel='\[\e[1;33m\]'
     local BBlu='\[\e[1;34m\]'
+    local CYAN='\[\e[0;36m\]'
     local Pur='\[\e[0;35m\]'
     local RCol='\[\e[0m\]'
 
@@ -46,7 +47,7 @@ __prompt_command() {
 
     HLINE=$(printf %"$COLUMNS"s | tr " " $CHAR)
     PS1="\n${LINECOLOR}${HLINE}${RCol}\n"
-    PS1+="\n${BBlu}\342\226\210\342\226\210 \u @ \[\033[1;31m\]\h \[\033[1;34m\]\w\n\[\033[0;36m\]\342\226\210\342\226\210 jobs:\j $ \[\033[0;39m\]"
+    PS1+="\n${BBlu}\342\226\210\342\226\210 \u @ ${Red}\h ${BBlu}\w\n${CYAN}\342\226\210\342\226\210 jobs:\j $ ${RCol}"
 }
 
 
