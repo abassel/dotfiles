@@ -116,3 +116,9 @@ fi
 if [ -f ~/.functions.sh ]; then
     . ~/.functions.sh
 fi
+
+# Load completition fzf-tab https://github.com/lincheney/fzf-tab-completion#bash 
+if [ -f ~/fzf-bash-completion.sh ]; then
+    . ~/fzf-bash-completion.sh
+    bind -x '"\t": fzf_bash_completion'
+fi

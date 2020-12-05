@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper telnet sed screen tmux man-db' # glances colordiff python3-pip python3 python-pygments'
+export _apps='tree lsof jq vim git wget crudini bash-completion git etckeeper telnet sed screen tmux man-db fzf' # glances colordiff python3-pip python3 python-pygments'
 
 function __install_all {
 
@@ -16,6 +16,7 @@ function __install_all {
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.functions.sh
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.screenrc
     # wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.inputrc
+    wget --backups=3 https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/bash/fzf-bash-completion.sh
 
     source ~/.bashrc
 
