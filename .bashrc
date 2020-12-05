@@ -122,3 +122,16 @@ if [ -f ~/fzf-bash-completion.sh ]; then
     . ~/fzf-bash-completion.sh
     bind -x '"\t": fzf_bash_completion'
 fi
+
+export FZF_DEFAULT_OPTS="
+--layout=reverse
+--multi
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--color='hl:148,hl+:154,pointer:032,marker:010,bg+:237'
+--prompt='∼ '
+--bind '?:toggle-preview'
+--bind 'ctrl-a:select-all'
+--bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
+--bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
+--bind 'ctrl-v:execute(code {+})'
+"
