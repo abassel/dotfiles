@@ -17,11 +17,16 @@ shopt -s histappend
 
 HISTSIZE=                 # the number of commands to remember in the command history (the default value is 500).
 HISTFILESIZE=             # the maximum number of lines contained in the history file (the default value is 500).
-export PROMPT_COMMAND='history -a;history -c;history -r'
+# export PROMPT_COMMAND='history -a;history -c;history -r'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# localization
+export LC_TERMINAL=iTerm2
+export LC_TERMINAL_VERSION=3.4.2
+export LC_ALL=en_US.UTF-8
 
 PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
 
@@ -30,8 +35,8 @@ __prompt_command() {
 
     local Red='\[\e[1;31m\]'
     local Gre='\[\e[0;32m\]'
-    local LGREY='\e[1;30m\]'
-    local BLACK='\e[0;30m\]'
+    local LGREY='\[\e[1;30m\]'
+    local BLACK='\[\e[0;30m\]'
     local BYel='\[\e[1;33m\]'
     local BBlu='\[\e[1;34m\]'
     local CYAN='\[\e[0;36m\]'
@@ -47,9 +52,9 @@ __prompt_command() {
 
     HLINE=$(printf %"$COLUMNS"s | tr " " $CHAR)
     PS1="\n${LINECOLOR}${HLINE}${RCol}\n"
-    PS1+="\n${BBlu}\342\226\210\342\226\210 \u @ ${Red}\h ${BBlu}\w\n${CYAN}\342\226\210\342\226\210 jobs:\j $ ${RCol}"
-}
+    PS1+="\n${BBlu}\342\226\210\342\226\210 \u @ ${Red}\h ${BBlu}\w\n${CYAN}\342\226\210\342\226\210 jobs:\j \$ ${RCol}"
 
+}
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
