@@ -82,6 +82,7 @@ alias gca='commit --amend'
 alias e='exit'
 alias c='clear'
 alias h='history'
+alias d='__debug'
 
 
 # Color man pages https://www.tecmint.com/view-colored-man-pages-in-linux/

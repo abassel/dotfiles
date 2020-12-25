@@ -39,6 +39,13 @@ function __any_errors() {
     __end_note
 }
 
+
+function __debug() {
+    echo "Running Strace for command --> $@"
+    strace -f -t -e trace=file $@
+}
+
+
 function __update() {
 
     curl https://raw.githubusercontent.com/abassel/dotfiles/master/boot.sh | bash
