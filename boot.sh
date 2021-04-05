@@ -23,10 +23,12 @@ function __install_all {
     ##########################################################
     wget https://github.com/sharkdp/bat/releases/download/v0.18.0/bat-musl_0.18.0_amd64.deb
     apt install ./bat-musl_0.18.0_amd64.deb
+    rm bat-musl_0.18.0_amd64.deb
     
     ##########################################################
     # FZF - https://github.com/junegunn/fzf#using-git
     ##########################################################
+    rm -rf  ~/.fzf
     git clone  https://github.com/junegunn/fzf.git ~/.fzf
     cd ~/.fzf
     git fetch --all --tags
