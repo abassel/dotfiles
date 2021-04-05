@@ -18,9 +18,22 @@ function __install_all {
     # wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.inputrc
     wget --backups=3 https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/bash/fzf-bash-completion.sh
 
-    # Install fzf - https://github.com/junegunn/fzf#using-git
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
+    ##########################################################
+    # BAT https://github.com/sharkdp/bat/releases
+    ##########################################################
+    wget https://github.com/sharkdp/bat/releases/download/v0.18.0/bat-musl_0.18.0_amd64.deb
+    apt install ./bat-musl_0.18.0_amd64.deb
+    
+    ##########################################################
+    # FZF - https://github.com/junegunn/fzf#using-git
+    ##########################################################
+    git clone  https://github.com/junegunn/fzf.git ~/.fzf
+    cd ~/.fzf
+    git fetch --all --tags
+    tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+    echo FZF v. $tag
+    git checkout $tag
+    ./install
 
     source ~/.bashrc
 
