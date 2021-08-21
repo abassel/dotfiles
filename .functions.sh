@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Search in command history.
+# Usage: h (string)
+function h() {
+  cat $HISTFILE | grep "$1"
+}
+
+# Log manipulation functions
 function __end_note() {
     echo ""
 #    echo "type __help to list all commands"

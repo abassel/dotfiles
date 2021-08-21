@@ -5,6 +5,23 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Source Functions
+if [ -f ~/.functions.sh ]; then
+    . ~/.functions.sh
+fi
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+# if [ -f ~/.bash_aliases ]; then
+#     . ~/.bash_aliases
+# fi
+# Source alias
+if [ -f ~/.alias.sh ]; then
+    . ~/.alias.sh
+fi
 
 ######### HISTORY section #########
 
@@ -65,25 +82,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias ports='netstat -tulanp'
-
-alias ga='git add'
-alias gp='git push'
-alias gl='git log'
-alias gs='git status'
-alias gd='git diff'
-alias gca='commit --amend'
-
-alias e='exit'
-alias c='clear'
-alias h='history'
-alias d='__debug'
-
 
 # Color man pages https://www.tecmint.com/view-colored-man-pages-in-linux/
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -98,14 +96,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # https://unix.stackexchange.com/questions/343168/can-i-prevent-service-foo-status-from-paging-its-output-through-less
 export SYSTEMD_PAGER=''
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -117,11 +107,6 @@ fi
 # Source openrc if you have one
 if [ -f ~/openrc ]; then
     . ~/openrc
-fi
-
-# Source Functions
-if [ -f ~/.functions.sh ]; then
-    . ~/.functions.sh
 fi
 
 # Load completition fzf-tab https://github.com/lincheney/fzf-tab-completion#bash 
