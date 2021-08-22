@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+function debug() {
+    echo "Running Strace for command --> $@"
+    strace -f -t -e trace=file $@
+}
+
 # https://justin.abrah.ms/dotfiles/zsh.html
-extract () {
+function extract () {
     if [ -f $1 ] ; then
         case $1 in
             *.tar.bz2)        tar xjf $1        ;;
@@ -22,6 +27,7 @@ extract () {
         echo "'$1' is not a valid file"
     fi
 }
+
 
 # Log manipulation functions
 function __end_note() {
@@ -61,12 +67,6 @@ function __any_errors() {
     grep -rins --include="*.log" "error\|warn\|critical\|fatal\|fail\|panic" /var/log
     dmesg | egrep -i "error\|warn\|critical\|fatal\|fail\|panic"
     __end_note
-}
-
-
-function __debug() {
-    echo "Running Strace for command --> $@"
-    strace -f -t -e trace=file $@
 }
 
 

@@ -18,13 +18,10 @@ export PATH="/usr/local/sbin:$PATH"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:/usr/local/opt/opencv@2/bin"
 
-# Start pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
 
 
-# CUSTOME History configuration - common configurations in .alias_exports.sh and .functions.sh
+
+# CUSTOM History configuration - common configurations in .alias_exports.sh and .functions.sh
 HISTFILE="$HOME/Documents/zsh_history.$(hostname).txt"    # So it gets synced
 
 setopt BANG_HIST                # Treat the '!' character specially during expansion.
@@ -127,13 +124,6 @@ function copy_patch_no_untracked() {
 function paste_patch() {
     pbpaste | git apply
 }
-
-
-alias kc="kubectl"
-alias cat='bat --paging=never'
-alias ping='prettyping'
-
-alias serve="python -m SimpleHTTPServer &"
 
 
 # Set name of the theme to load.
