@@ -11,7 +11,7 @@ alias d='__debug'
 
 # https://unix.stackexchange.com/questions/83342/how-to-keep-dotfiles-system-agnostic
 case $_myos in
-  'Linux')   alias u='apt update -y; apt upgrade -y; echo "\n"' ;;
+  'Linux')   alias u='apt update -y; apt upgrade -y; echo "Consider apt dist-upgrade -y"' ;;
   'FreeBSD') alias u='echo NOT IMPLEMENTED' ;;
   'Darwin')  alias u='brew update; brew upgrade; brew upgrade --cask' ;;
 esac
