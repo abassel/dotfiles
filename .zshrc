@@ -12,6 +12,7 @@ if [ -f ~/.alias_exports.sh ]; then
     . ~/.alias_exports.sh
 fi
 
+# TODO: continue here: https://www.arp242.net/zshrc.html
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export PATH="/usr/local/sbin:$PATH"
