@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 RED='\033[0;31m'
+YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 function debug() {
-    echo -e "Running Strace for command --> ${RED} $@ ${NC}\n"
+    echo -e "Running Strace for command --> ${YELLOW} $@ ${NC}\n"
     strace -f -t -e trace=file $@
 }
 

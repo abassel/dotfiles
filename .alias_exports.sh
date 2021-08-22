@@ -3,6 +3,10 @@
 # https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
 _myos=$(uname)
 
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
 # General
 alias e='exit'
 alias c='clear'
@@ -15,7 +19,7 @@ alias serve="python -m SimpleHTTPServer &"
 
 # https://unix.stackexchange.com/questions/83342/how-to-keep-dotfiles-system-agnostic
 case $_myos in
-  'Linux')   alias u='apt update -y; apt upgrade -y; echo "Consider apt dist-upgrade -y"' ;;
+  'Linux')   alias u='apt update -y; apt upgrade -y; echo -e "Consider ${YELLOW}apt dist-upgrade -y${NC}"' ;;
   'FreeBSD') alias u='echo NOT IMPLEMENTED' ;;
   'Darwin')  alias u='brew update; brew upgrade; brew upgrade --cask' ;;
 esac
