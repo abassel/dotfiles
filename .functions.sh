@@ -28,6 +28,53 @@ function extract () {
     fi
 }
 
+# https://github.com/jessfraz/dotfiles/blob/master/.aliases
+# Linux specific aliases, work on both MacOS and Linux.
+function pbcopy() {
+	stdin=$(</dev/stdin);
+	pbcopy="$(which pbcopy)";
+	if [[ -n "$pbcopy" ]]; then
+		echo "$stdin" | "$pbcopy"
+	else
+		echo "$stdin" | xclip -selection clipboard
+	fi
+}
+
+function pbpaste() {
+	pbpaste="$(which pbpaste)";
+	if [[ -n "$pbpaste" ]]; then
+		"$pbpaste"
+	else
+		xclip -selection clipboard
+	fi
+}
+
+# Git patch functions
+function copy_patch() {
+    files2patch=($(git ls-files --others --exclude-standard))
+
+    # put all untracked files in the patch
+    for file in $files2patch; do git add --intent-to-add $file; done
+
+    git diff HEAD | pbcopy
+    echo "==== Generating patch in clipboard for the files below ===="
+    git diff HEAD --name-only | cat
+
+    # restore untracked files as untracked
+    for file in $files2patch; do git reset HEAD $file; done
+}
+
+function copy_patch_no_untracked() {
+
+    git diff HEAD | pbcopy
+    echo "==== Generating patch in clipboard for the files below ===="
+    git diff HEAD --name-only | cat
+
+}
+
+function paste_patch() {
+    pbpaste | git apply
+}
 
 # Log manipulation functions
 function __end_note() {

@@ -15,13 +15,11 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export PATH="/usr/local/sbin:$PATH"
-
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:/usr/local/opt/opencv@2/bin"
 
+# CUSTOM History configuration
+# - common configurations in .alias_exports.sh and .functions.sh
 
-
-
-# CUSTOM History configuration - common configurations in .alias_exports.sh and .functions.sh
 HISTFILE="$HOME/Documents/zsh_history.$(hostname).txt"    # So it gets synced
 
 setopt BANG_HIST                # Treat the '!' character specially during expansion.
@@ -67,63 +65,15 @@ function dedup_history() {
     # \cat -n $HISTFILE | LC_ALL=C sort -t ';' -uk2 | LC_ALL=C sort -nk1 | cut -c8- | sort -n
 }
 
-# Colored man pages
-# https://apple.stackexchange.com/questions/182320/is-there-a-way-to-color-parts-of-the-man-pages-on-the-terminal/182344
-# man() {
-# 	env \
-# 		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-# 		LESS_TERMCAP_md=$(printf "\e[1;31m") \
-# 		LESS_TERMCAP_me=$(printf "\e[0m") \
-# 		LESS_TERMCAP_se=$(printf "\e[0m") \
-# 		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-# 		LESS_TERMCAP_ue=$(printf "\e[0m") \
-# 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
-# 		man "$@"
-# }
-
-export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
-export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
-export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
-export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
-export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode - yellow
-export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
-export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
 
 
 # https://stackoverflow.com/questions/12382499/looking-for-altleftarrowkey-solution-in-zsh
 # https://stackoverflow.com/questions/8638012/fix-key-settings-home-end-insert-delete-in-zshrc-when-running-zsh-in-terminat
 # To know the code of a key, execute cat, press enter, press the key, then Ctrl+C.
-# bindkey "^[^[[D" backward-word  # option + left arrow
-# bindkey "^[^[[C" forward-word   # option + right arrow
 bindkey "^[[1;5D" backward-word  # control + left arrow
 bindkey "^[[1;5C" forward-word   # control + right arrow
 
 
-function copy_patch() {
-    files2patch=($(git ls-files --others --exclude-standard))
-
-    # put all untracked files in the patch
-    for file in $files2patch; do git add --intent-to-add $file; done
-
-    git diff HEAD | pbcopy
-    echo "==== Generating patch in clipboard for the files below ===="
-    git diff HEAD --name-only | cat
-
-    # restore untracked files as untracked
-    for file in $files2patch; do git reset HEAD $file; done
-}
-
-function copy_patch_no_untracked() {
-
-    git diff HEAD | pbcopy
-    echo "==== Generating patch in clipboard for the files below ===="
-    git diff HEAD --name-only | cat
-
-}
-
-function paste_patch() {
-    pbpaste | git apply
-}
 
 
 # Set name of the theme to load.

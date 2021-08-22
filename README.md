@@ -18,6 +18,7 @@ curl https://raw.githubusercontent.com/abassel/dotfiles/master/boot.sh | bash
 
 ## References :notebook:
 - [awesome-dotfiles](https://github.com/webpro/awesome-dotfiles)
+- [jessfraz dotfiles](https://github.com/jessfraz/dotfiles)
 - [Danny Cosson Dotfiles](https://github.com/dcosson/dotfiles)
 - [mattjmorrison's Dotfiles](https://github.com/mattjmorrison/dotfiles)
 - [alrra's dotfiles](https://github.com/alrra/dotfiles)
