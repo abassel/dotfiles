@@ -23,34 +23,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
-# For compilers to find sqlite you may need to set:
-export LDFLAGS="${LDFLAGS} -L/usr/local/opt/sqlite/lib"
-export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/sqlite/include"
-
-# For compilers to find zlib you may need to set:
-export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
-export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
-
-# For pkg-config to find zlib you may need to set:
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
-
-# For compilers to find openssl@1.1 you may need to set:
-export LDFLAGS="${LDFLAGS} -L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/openssl@1.1/include"
-
-# For pkg-config to find openssl@1.1 you may need to set:
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/openssl@1.1/lib/pkgconfig"
-
-# For compilers to find opencv@2 you may need to set:
-export LDFLAGS="${LDFLAGS} -L/usr/local/opt/opencv@2/lib"
-export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/opencv@2/include"
-
-# For pkg-config to find opencv@2 you may need to set:
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/opencv@2/lib/pkgconfig"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 
 # History configuration
@@ -74,8 +46,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-# https://medium.com/@prasincs/hiding-secret-keys-from-shell-history-part-1-5875eb5556cc
-export HISTORY_IGNORE="(ls|exit|clear|gs|rm|whois|e|c|u)"
+
 
 
 # Source Functions
