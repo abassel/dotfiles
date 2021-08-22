@@ -20,6 +20,13 @@ case $_myos in
   'Darwin')  alias u='brew update; brew upgrade; brew upgrade --cask' ;;
 esac
 
+# Dot file management
+# https://www.youtube.com/watch?v=tBoLDpTWVOM
+# https://www.atlassian.com/git/tutorials/dotfiles
+# make sure you have -> git init --bare $HOME/dotfiles
+alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+# then -> config config --local status.showUntrackedFiles no
+
 # LS
 alias ll='ls -alF'
 alias la='ls -A'
