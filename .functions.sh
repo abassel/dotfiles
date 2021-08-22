@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
 
-# Search in command history.
-# Usage: h (string)
-function h() {
-  cat $HISTFILE | grep "$1"
+# https://justin.abrah.ms/dotfiles/zsh.html
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)        tar xjf $1        ;;
+            *.tar.gz)         tar xzf $1        ;;
+            *.bz2)            bunzip2 $1        ;;
+            *.rar)            unrar x $1        ;;
+            *.gz)             gunzip $1         ;;
+            *.tar)            tar xf $1         ;;
+            *.tar.xz)         tar xf $1         ;;
+            *.tbz2)           tar xjf $1        ;;
+            *.tgz)            tar xzf $1        ;;
+            *.zip)            unzip $1          ;;
+            *.Z)              uncompress $1     ;;
+            *.7z)             7zr e $1          ;;
+            *)                echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
 # Log manipulation functions
@@ -29,14 +46,14 @@ function __wipe_all_logs() {
     __end_note
 }
 
-function __track_etc() {
-
-    pushd /etc
-    etckeeper init
-    etckeeper commit "commit at $(date '+%Y-%m-%d %H:%M:%S')"
-    popd
-    __end_note
-}
+#function __track_etc() {
+#
+#    pushd /etc
+#    etckeeper init
+#    etckeeper commit "commit at $(date '+%Y-%m-%d %H:%M:%S')"
+#    popd
+#    __end_note
+#}
 
 
 function __any_errors() {

@@ -13,8 +13,9 @@ function __install_all {
     cd ~
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.vimrc
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.bashrc
+    wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.zshrc
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.functions.sh
-    wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.alias.sh
+    wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.alias_exports.sh
     wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.screenrc
     # wget --backups=3 https://raw.githubusercontent.com/abassel/dotfiles/master/.inputrc
     wget --backups=3 https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/bash/fzf-bash-completion.sh

@@ -15,12 +15,10 @@ fi
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-# if [ -f ~/.bash_aliases ]; then
-#     . ~/.bash_aliases
-# fi
-# Source alias
-if [ -f ~/.alias.sh ]; then
-    . ~/.alias.sh
+
+# Source alias and exports
+if [ -f ~/.alias_exports.sh ]; then
+    . ~/.alias_exports.sh
 fi
 
 ######### HISTORY section #########
@@ -32,8 +30,6 @@ fi
 shopt -s histappend
 
 
-HISTSIZE=                 # the number of commands to remember in the command history (the default value is 500).
-HISTFILESIZE=             # the maximum number of lines contained in the history file (the default value is 500).
 # export PROMPT_COMMAND='history -a;history -c;history -r'
 
 # check the window size after each command and, if necessary,
