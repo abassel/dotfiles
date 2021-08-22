@@ -66,14 +66,11 @@ function dedup_history() {
 }
 
 
-
 # https://stackoverflow.com/questions/12382499/looking-for-altleftarrowkey-solution-in-zsh
 # https://stackoverflow.com/questions/8638012/fix-key-settings-home-end-insert-delete-in-zshrc-when-running-zsh-in-terminat
 # To know the code of a key, execute cat, press enter, press the key, then Ctrl+C.
 bindkey "^[[1;5D" backward-word  # control + left arrow
 bindkey "^[[1;5C" forward-word   # control + right arrow
-
-
 
 
 # Set name of the theme to load.
@@ -130,25 +127,9 @@ plugins=(poetry git-extras git-flow git-hubflow docker jira dotenv yarn kubectl 
 
 source $ZSH/oh-my-zsh.sh
 
-
 # Enable generic colorizer
 [[ -s "/usr/local/etc/grc.zsh" ]] && source /usr/local/etc/grc.zsh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Required Multi Byte character.
 export LC_ALL="en_US.UTF-8"
@@ -178,9 +159,6 @@ compinit  # Required for poetry autocomplet
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Auto Correct types in commands
-# https://scriptingosx.com/2019/06/moving-to-zsh-part-3-shell-options/
-# setopt CORRECT
 
 # FZF Color themes
 # https://github.com/junegunn/fzf/wiki/Color-schemes

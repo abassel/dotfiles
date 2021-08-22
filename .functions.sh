@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
 function debug() {
-    echo "Running Strace for command --> $@"
+    echo -e "Running Strace for command --> ${RED} $@ ${NC}\n"
     strace -f -t -e trace=file $@
 }
 
@@ -30,24 +33,24 @@ function extract () {
 
 # https://github.com/jessfraz/dotfiles/blob/master/.aliases
 # Linux specific aliases, work on both MacOS and Linux.
-function pbcopy() {
-	stdin=$(</dev/stdin);
-	pbcopy="$(which pbcopy)";
-	if [[ -n "$pbcopy" ]]; then
-		echo "$stdin" | "$pbcopy"
-	else
-		echo "$stdin" | xclip -selection clipboard
-	fi
-}
-
-function pbpaste() {
-	pbpaste="$(which pbpaste)";
-	if [[ -n "$pbpaste" ]]; then
-		"$pbpaste"
-	else
-		xclip -selection clipboard
-	fi
-}
+#function pbcopy() {
+#	stdin=$(</dev/stdin);
+#	pbcopy="$(which pbcopy)";
+#	if [[ -n "$pbcopy" ]]; then
+#		echo "$stdin" | "$pbcopy"
+#	else
+#		echo "$stdin" | xclip -selection clipboard
+#	fi
+#}
+#
+#function pbpaste() {
+#	pbpaste="$(which pbpaste)";
+#	if [[ -n "$pbpaste" ]]; then
+#		"$pbpaste"
+#	else
+#		xclip -selection clipboard
+#	fi
+#}
 
 # Git patch functions
 function copy_patch() {
