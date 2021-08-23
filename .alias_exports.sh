@@ -21,7 +21,7 @@ alias serve="python -m SimpleHTTPServer &"
 case $_myos in
   'Linux')   alias u='apt update -y; apt upgrade -y; echo -e "Consider ${YELLOW}apt dist-upgrade -y${NC}"' ;;
   'FreeBSD') alias u='echo NOT IMPLEMENTED' ;;
-  'Darwin')  alias u='brew update; brew upgrade; brew upgrade --cask' ;;
+  'Darwin')  alias u='brew update; brew upgrade; brew upgrade --cask --greedy' ;;
 esac
 
 # Dot file management
