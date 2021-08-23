@@ -15,6 +15,7 @@ fi
 # TODO: continue here: https://www.arp242.net/zshrc.html
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+export ZSH_DISABLE_COMPFIX="true"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:/usr/local/opt/opencv@2/bin"
 
