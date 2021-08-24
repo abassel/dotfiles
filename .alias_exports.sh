@@ -52,6 +52,11 @@ alias gl='git log'
 alias gs='git status'
 alias gd='git diff'
 alias gca='git commit --amend'
+# gb (git branch create) is defined as function
+alias branch='gb'
+alias b='hub browse'
+alias pr='gh pr create'
+alias s='hub sync all'
 
 
 ########################################
@@ -66,7 +71,7 @@ export HISTSIZE=                 # the number of commands to remember in the com
 export HISTFILESIZE=             # the maximum number of lines contained in the history file (the default value is 500).
 #export HISTSIZE=100000000
 export SAVEHIST=100000000
-export HISTORY_IGNORE="(ls|ll|exit|clear|history|gs|rm|whois|e|c|u|h)"
+export HISTORY_IGNORE="(ls|ll|exit|clear|history|gs|rm|whois|e|c|u|h|s|pr|b|branch|gb)"
 
 # MAN/LESS
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red

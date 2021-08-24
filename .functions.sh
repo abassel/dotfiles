@@ -9,6 +9,14 @@ function debug() {
     strace -f -t -e trace=file $@
 }
 
+
+function gb() {
+    echo -e "${YELLOW} Creating a new branch ${NC} $1 \n"
+    hub sync all
+    git checkout -b $1
+    git push -u origin $1
+}
+
 # https://justin.abrah.ms/dotfiles/zsh.html
 function extract () {
     if [ -f $1 ] ; then
