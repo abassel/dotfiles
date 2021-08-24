@@ -172,3 +172,7 @@ export FZF_DEFAULT_OPTS='
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+if [ -f ~/.secrets.sh ]; then
+    . ~/.secrets.sh
+fi
