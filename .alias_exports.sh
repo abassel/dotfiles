@@ -48,7 +48,7 @@ alias myip=ip_pub
 # Git
 alias ga='git add'
 alias gp='git push'
-alias gl='git log'
+alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs='git status'
 alias gd='git diff'
 alias gca='git commit --amend'
