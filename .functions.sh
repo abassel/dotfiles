@@ -21,7 +21,7 @@ function review() {
     echo -e "${YELLOW} getting PR ${NC} $1 \n"
     gh pr checkout $1
     # https://newbedev.com/is-there-a-quick-way-to-git-diff-from-the-point-or-branch-origin
-    git diff $(git merge-base --fork-point origin) | lint-diffs > REVIEW.txt
+    git diff main...HEAD | lint-diffs > REVIEW.txt
     cat REVIEW.txt
 }
 
