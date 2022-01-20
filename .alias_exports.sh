@@ -124,3 +124,5 @@ export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/opencv@2/include"
 # For pkg-config to find opencv@2:
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/opencv@2/lib/pkgconfig"
 
+# For bson (binary json) to be found by other tools:
+export LDFLAGS="${LDFLAGS} -L/usr/local/opt/bison/lib"
