@@ -13,7 +13,7 @@ alias c='clear'
 alias h=' cat $HISTFILE | grep '
 alias d='debug'
 alias kc="kubectl"
-type bat >/dev/null 2>&1 && alias cat='bat --paging=never'
+if $(which bat >& /dev/null); then alias cat='bat --paging=never'; fi
 alias ping='prettyping'
 alias serve="python -m SimpleHTTPServer &"
 

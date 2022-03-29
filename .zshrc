@@ -1,4 +1,13 @@
 
+
+# TODO: continue here: https://www.arp242.net/zshrc.html
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
+export ZSH_DISABLE_COMPFIX="true"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:/usr/local/opt/opencv@2/bin"
+
+
 # Source Functions
 if [ -f ~/.functions.sh ]; then
     . ~/.functions.sh
@@ -12,12 +21,6 @@ if [ -f ~/.alias_exports.sh ]; then
     . ~/.alias_exports.sh
 fi
 
-# TODO: continue here: https://www.arp242.net/zshrc.html
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-export ZSH_DISABLE_COMPFIX="true"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:/usr/local/opt/opencv@2/bin"
 
 # CUSTOM History configuration
 # - common configurations in .alias_exports.sh and .functions.sh
