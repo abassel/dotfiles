@@ -87,7 +87,7 @@ function cd() {
 }
 
 function h() {
-    history | fzf +s --tac -i --exact | sed -E 's/ *[0-9]*\*? *//' | tr -d '\n' | pbcopy
+    history 1 -1 | fzf +s --tac -i --exact | sed -E 's/ *[0-9]*\*? *//' | tr -d '\n' | pbcopy
 }
 
 # https://justin.abrah.ms/dotfiles/zsh.html
