@@ -9,8 +9,27 @@ function debug() {
     strace -f -t -e trace=file $@
 }
 
+# select branch via fzf
+function __branch() {
+  local tags branches target
+  branches=$(
+    git --no-pager branch --all \
+      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
+    | sed '/^$/d') || return
+  tags=$(
+    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$branches"; echo "$tags") |
+    fzf --no-hscroll --no-multi -n 2 \
+        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
+  git checkout $(awk '{print $2}' <<<"$target" )
+}
 
 function gb() {
+    if [[ "$#" == 0 ]]; then
+        __branch;
+        return
+    fi
     echo -e "${YELLOW} Creating a new branch ${NC} $1 \n"
     hub sync all
     git checkout -b $1
@@ -23,6 +42,52 @@ function review() {
     # https://newbedev.com/is-there-a-quick-way-to-git-diff-from-the-point-or-branch-origin
     git diff main...HEAD | lint-diffs > REVIEW.txt
     cat REVIEW.txt
+}
+
+# Support functions for glf
+alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
+_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
+
+function glf() {
+    glNoGraph |
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+            --ansi --preview="$_viewGitLogLine" \
+            --header "enter to view, ctrl-c to copy hash" \
+            --bind "enter:execute:$_viewGitLogLine   | less -R" \
+            --bind "ctrl-c:execute:$_gitLogLineToHash | pbcopy"
+}
+
+# https://github.com/junegunn/fzf/wiki/examples#cd
+function cdf() {
+    local dir
+    dir=$(find ${1:-~} -path '*/\.*' -prune -maxdepth 4 \
+                    -o -type d -print 2> /dev/null | fzf +m -i --exact) &&
+    cd "$dir"
+}
+
+function cd() {
+    if [[ "$#" != 0 ]]; then
+        builtin cd "$@";
+        return
+    fi
+    while true; do
+        local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
+        local dir="$(printf '%s\n' "${lsd[@]}" |
+            fzf --reverse --preview '
+                __cd_nxt="$(echo {})";
+                __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
+                echo $__cd_path;
+                echo;
+                ls -p --color=always "${__cd_path}";
+        ')"
+        [[ ${#dir} != 0 ]] || return 0
+        builtin cd "$dir" &> /dev/null
+    done
+}
+
+function h() {
+    history | fzf +s --tac -i --exact | sed -E 's/ *[0-9]*\*? *//' | tr -d '\n' | pbcopy
 }
 
 # https://justin.abrah.ms/dotfiles/zsh.html
@@ -99,7 +164,7 @@ function paste_patch() {
 # Log manipulation functions
 function __end_note() {
     echo ""
-#    echo "type __help to list all commands"
+    # echo "type __help to list all commands"
     echo ""
 }
 
@@ -148,10 +213,35 @@ function __help() {
 
     echo "USE-AS-IS"
     echo ""
-    echo "__update - update rc scripts"
-    echo "__any_errors - grep for errors"
-    echo "__wipe_all_logs - wipe all your logs"
-    echo "__track_etc - git init the /etc"
+    echo "c -> clear"
+    echo "cd -> fuzzy navigate directories"
+    echo "cdf [<DIR>] -> fuzzy navigate ALL directories or "
+    echo "d -> fuzzy find directory"
+    echo "e -> exit"
+    echo "extract -> expand tar, zip etc."
+    echo "h -> fuzzy find history"
+    echo "sync_history -> merge all history"
+    echo "u -> update(brew or apt)"
+    echo ""
+    echo "-GIT/GITHUB FUNCTIONS-"
+    echo "copy_patch -> copy pending changes to clipboard"
+    echo "copy_patch_no_untracked -> copy pending changes to clipboard WITHOUT untracked files"
+    echo "paste_patch -> apply patch"
+    echo "gb -> switch to branch"
+    echo "gb <BRANCH> -> create remote branch and checkout it"
+    echo "gl -> show git log history"
+    echo "glX -> variants to show log history"
+    echo "glf -> fuzzy find git history"
+    echo "pr -> create pull request"
+    echo "s -> sync all branches"
+    echo "review <PR_NUM> -> checkout given pr number"
+    echo ""
+    echo "-LINUX FUNCTIONS-"
+    echo "debug             - run strace for command"
+    echo "__update          - update rc scripts"
+    echo "__any_errors      - grep for errors"
+    echo "__wipe_all_logs   - wipe all your logs"
+    # echo "__track_etc - git init the /etc"
     echo ""
 }
 
