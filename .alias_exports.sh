@@ -10,8 +10,6 @@ NC='\033[0m' # No Color
 # General
 alias e='exit'
 alias c='clear'
-alias h=' cat $HISTFILE | grep '
-alias d='debug'
 alias kc="kubectl"
 if $(which bat >& /dev/null); then alias cat='bat --paging=never'; fi
 alias ping='prettyping'
@@ -60,7 +58,6 @@ alias b='hub browse'
 alias pr='gh pr create'
 alias s='hub sync all'
 
-
 ########################################
 # EXPORTS
 ########################################
@@ -73,7 +70,7 @@ export HISTSIZE=                 # the number of commands to remember in the com
 export HISTFILESIZE=             # the maximum number of lines contained in the history file (the default value is 500).
 #export HISTSIZE=100000000
 export SAVEHIST=100000000
-export HISTORY_IGNORE="(ls|ll|exit|clear|history|gs|rm|whois|e|c|u|h|s|pr|b|branch|gb)"
+export HISTORY_IGNORE="(ls|ll|exit|clear|history|gs|rm|whois|e|c|u|h|s|pr|b|d|gb)"
 
 # MAN/LESS
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
