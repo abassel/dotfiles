@@ -61,7 +61,13 @@ function sync_history() {
 }
 
 function dedup_history() {
-    echo "Not yet implemented"
+    # Dedup and filter history
+    cp $HISTFILE $HISTFILE.dedupe.bak
+    echo -e "\e[33mBefore dedup -> $(wc -l $HISTFILE) lines"
+    # cat $HISTFILE | LC_ALL=C sed 's/.*:0;//' | LC_ALL=C sort -u > $HISTFILE.dedup
+    cat $HISTFILE | LC_ALL=C sort -t ';' -uk2 | LC_ALL=C sort -nk1 | LC_ALL=C cut -f2- > $HISTFILE.dedup
+    cat $HISTFILE.dedup | grep -vE "\-\-help|\-\-version|function|mkdir|mkdir|yarn add|yarn instal|npm install|gitinit|git commit -m|git add|git checkout|brew info|brew install|brew search|brew cask install|brew cask info|cd " > $HISTFILE
+    echo -e "\e[33mAfter dedup $(wc -l $HISTFILE) lines"
     # https://forum.manjaro.org/t/zsh-history-file-without-duplicates/123317
     # https://www.quora.com/How-do-I-remove-duplicates-and-sort-entries-in-zsh-history
     # https://unix.stackexchange.com/questions/48713/how-can-i-remove-duplicates-in-my-bash-history-preserving-order

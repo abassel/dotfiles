@@ -70,7 +70,7 @@ export HISTSIZE=                 # the number of commands to remember in the com
 export HISTFILESIZE=             # the maximum number of lines contained in the history file (the default value is 500).
 #export HISTSIZE=100000000
 export SAVEHIST=100000000
-export HISTORY_IGNORE="(ls|ll|config|exit|clear|history|gs|rm|whois|cd|cdf|w|e|c|u|h|s|pr|b|d|gb|gl|gl1|gl2|gl3|glf|__help)"
+export HISTORY_IGNORE="(ls|ll|config|review|exit|clear|history|man|tldr|bro|gs|rm|whois|bat|cp|cd|cdf|w|e|c|u|h|s|pr|b|d|gb|gl|gl1|gl2|gl3|glf|__help)"
 
 # MAN/LESS
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
