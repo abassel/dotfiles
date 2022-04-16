@@ -128,3 +128,5 @@ export FZF_DEFAULT_OPTS="
 --bind '?:toggle-preview'
 --bind 'tab:down'
 "
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
