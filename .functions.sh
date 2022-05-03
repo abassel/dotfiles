@@ -58,6 +58,20 @@ function glf() {
             --bind "ctrl-c:execute:$_gitLogLineToHash | pbcopy"
 }
 
+function squash() {
+    # https://stackoverflow.com/questions/25356810/git-how-to-squash-all-commits-on-branch
+    if [[ "$#" == 0 ]]; then
+        echo -e "${RED} Need commit message between quotes ${NC} \n"
+        return
+    fi
+    # if no pending changes, one stash is droped
+    #git stash save --include-untracked "save before squash"
+    git reset --soft $(git merge-base $(gp) $(git branch --show-current))
+    git commit -m $1
+    #git stash pop
+}
+
+
 # https://github.com/junegunn/fzf/wiki/examples#cd
 function cdf() {
     local dir
