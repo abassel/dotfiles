@@ -45,7 +45,6 @@ alias myip=ip_pub
 
 # Git
 alias ga='git add'
-alias gp='git push'
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gl2="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gl3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -57,6 +56,14 @@ alias branch='gb'
 alias b='hub browse'
 alias pr='gh pr create'
 alias s='hub sync all'
+# Get parent branch - https://stackoverflow.com/questions/3161204/how-to-find-the-nearest-parent-of-a-git-branch
+alias gp='git show-branch \
+| sed "s/].*//" \
+| grep "\*" \
+| grep -v "$(git rev-parse --abbrev-ref HEAD)" \
+| head -n1 \
+| sed "s/^.*\[//"'
+
 
 ########################################
 # EXPORTS
