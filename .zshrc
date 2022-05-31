@@ -130,7 +130,7 @@ ZSH_THEME="iconic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(poetry git-extras git-flow git-hubflow docker jira dotenv yarn kubectl pip pyenv pylint)
+plugins=(poetry git-extras git-flow git-hubflow docker jira dotenv yarn kubectl pip pylint)
 
 # User configuration
 
