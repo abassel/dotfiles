@@ -56,6 +56,7 @@ alias branch='gb'
 alias b='hub browse'
 alias pr='gh pr create'
 alias s='hub sync all'
+alias m='git checkout main'
 # Get parent branch - https://stackoverflow.com/questions/3161204/how-to-find-the-nearest-parent-of-a-git-branch
 alias gp='git show-branch \
 | sed "s/].*//" \
