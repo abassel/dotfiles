@@ -248,6 +248,7 @@ function __help() {
     echo "glf -> fuzzy find git history"
     echo "pr -> create pull request"
     echo "s -> sync all branches"
+    echo "m -> git checkout main"
     echo "review <PR_NUM> -> checkout given pr number"
     echo ""
     echo "-LINUX FUNCTIONS-"
