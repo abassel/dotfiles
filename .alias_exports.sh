@@ -53,10 +53,13 @@ alias gd='git diff'
 alias gca='git commit --amend'
 # gb (git branch create) is defined as function
 alias branch='gb'
-alias b='hub browse'
+alias b='gh browse'
 alias pr='gh pr create'
+alias p='git push'
+alias pf='git push --force'
 alias s='hub sync all'
 alias m='git checkout main'
+alias mm='git checkout -'
 # Get parent branch - https://stackoverflow.com/questions/3161204/how-to-find-the-nearest-parent-of-a-git-branch
 alias gp='git show-branch \
 | sed "s/].*//" \
