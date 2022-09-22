@@ -2,7 +2,7 @@
 
 # TODO: continue here: https://www.arp242.net/zshrc.html
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+[[ ! -f ~/.oh-my-zsh ]] || source ~/.oh-my-zsh
 export ZSH_DISABLE_COMPFIX="true"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:/usr/local/opt/opencv@2/bin"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # Support new gnu make 4.3 (brew install make) rather than default 3.8
@@ -134,7 +134,7 @@ plugins=(poetry git-extras git-flow git-hubflow docker jira dotenv yarn kubectl 
 
 # User configuration
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # Enable generic colorizer
 [[ -s "/usr/local/etc/grc.zsh" ]] && source /usr/local/etc/grc.zsh
@@ -156,14 +156,28 @@ export LC_ALL="en_US.UTF-8"
 # CUSTOM ICONIC CONFIGURATION
 export ZSH_POWERLINE_SHOW_USER=false
 export PATH="/usr/local/sbin:$PATH"
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Support powerline 9k
+if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Support powerline 10k
+if [ -f ~/powerlevel10k/powerlevel10k.zsh-theme ]; then
+    source ~/powerlevel10k/powerlevel10k.zsh-theme
+    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
 
 # Github cli completition
 eval "$(gh completion --shell zsh)"
 
-compinit  # Required for poetry autocomplet
+# compinit  # Required for poetry autocomplet
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
