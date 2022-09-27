@@ -2,7 +2,6 @@
 
 # TODO: continue here: https://www.arp242.net/zshrc.html
 # Path to your oh-my-zsh installation.
-[[ ! -f ~/.oh-my-zsh ]] || source ~/.oh-my-zsh
 export ZSH_DISABLE_COMPFIX="true"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:/usr/local/opt/opencv@2/bin"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # Support new gnu make 4.3 (brew install make) rather than default 3.8
@@ -134,8 +133,6 @@ plugins=(poetry git-extras git-flow git-hubflow docker jira dotenv yarn kubectl 
 
 # User configuration
 
-# source $ZSH/oh-my-zsh.sh
-
 # Enable generic colorizer
 [[ -s "/usr/local/etc/grc.zsh" ]] && source /usr/local/etc/grc.zsh
 
@@ -158,7 +155,11 @@ export ZSH_POWERLINE_SHOW_USER=false
 export PATH="/usr/local/sbin:$PATH"
 
 # Support powerline 9k
+# [[ ! -f ~/.oh-my-zsh ]] TODO: Should use this?
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    export ZSH=~/.oh-my-zsh
+    source ~/.oh-my-zsh
+    source $ZSH/oh-my-zsh.sh
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
