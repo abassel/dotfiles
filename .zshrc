@@ -179,7 +179,12 @@ export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlightin
 eval "$(gh completion --shell zsh)"
 
 # compinit  # Required for poetry autocomplet
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
+    autoload -Uz compinit
+    compinit
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
