@@ -104,6 +104,17 @@ function h() {
     history 1 -1 | fzf +s --tac -i --exact | sed -E 's/ *[0-9]*\*? *//' | tr -d '\n' | pbcopy
 }
 
+function pw() {
+    local local_size=20
+    if [ $# != 0 ]; then
+        local_size=$1
+    fi
+    echo "Generating passwords with size $local_size"
+    openssl rand -base64 $local_size
+    # https://unix.stackexchange.com/questions/230673/how-to-generate-a-random-string
+    LC_ALL=C tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c $local_size ; echo
+}
+
 # https://justin.abrah.ms/dotfiles/zsh.html
 function extract () {
     if [ -f $1 ] ; then
