@@ -22,7 +22,7 @@ fi
 # CUSTOM History configuration
 # - common configurations in .alias_exports.sh and .functions.sh
 
-HISTFILE="$HOME/Documents/zsh_history.$(hostname).txt"    # So it gets synced
+HISTFILE="$HOME/Documents/zsh_history.$(hostname -s).txt"    # So it gets synced
 
 setopt BANG_HIST                # Treat the '!' character specially during expansion.
 unsetopt EXTENDED_HISTORY       # NOTE: also duplicated after oh-my-zsh

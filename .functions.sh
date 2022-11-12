@@ -21,7 +21,7 @@ function __branch() {
   target=$(
     (echo "$branches"; echo "$tags") |
     fzf --no-hscroll --no-multi -n 2 \
-        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
+        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'" | sed 's/origin\///g') || return
   git checkout $(awk '{print $2}' <<<"$target" )
 }
 
@@ -58,6 +58,7 @@ function glf() {
             --bind "ctrl-c:execute:$_gitLogLineToHash | pbcopy"
 }
 
+# NOT WORKING - need to try - https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
 function squash() {
     # https://stackoverflow.com/questions/25356810/git-how-to-squash-all-commits-on-branch
     if [[ "$#" == 0 ]]; then
