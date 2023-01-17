@@ -66,13 +66,18 @@ alias s='hub sync all'
 alias m='git checkout main'
 alias mm='git checkout -'
 # Get parent branch - https://stackoverflow.com/questions/3161204/how-to-find-the-nearest-parent-of-a-git-branch
-alias gp='git show-branch \
-| sed "s/].*//" \
-| grep "\*" \
-| grep -v "$(git rev-parse --abbrev-ref HEAD)" \
-| head -n1 \
-| sed "s/^.*\[//"'
+# Removed grep "\*" because it was causing issues in the terminal
+alias gp='git show-branch | grep -v "$(git rev-parse --abbrev-ref HEAD)" | sed "s/].*//" | head -n1 | sed "s/^.*\[//"'
 
+# alias gp='git show-branch \
+# | sed "s/].*//" \
+# | grep "\*" \
+# | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
+# | head -n1 \
+# | sed "s/^.*\[//"'
+
+# Modified from the above:
+# https://gist.github.com/joechrysler/6073741
 
 ########################################
 # EXPORTS
