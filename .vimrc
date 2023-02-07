@@ -2,7 +2,8 @@ color desert
 
 syntax on
 
-set number
+set number                     " Show current line number
+set relativenumber             " Show relative line numbers
 set et
 set sw=2
 set smarttab
