@@ -25,6 +25,12 @@ set tw=100
 " new regex engine seems to be really slow, particularly with ruby. Set to previous one
 set re=1
 
+" https://mkaz.blog/working-with-vim/lines/
+" bubble single lines
+nmap <C-Up> :m .-2<CR>
+nmap <C-Down> :m  .+1<CR>
+" see same page for macros to bubble multiple lines
+
 set equalalways " Multiple windows, when created, are equal in size
 set splitbelow splitright
 
