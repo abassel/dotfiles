@@ -61,13 +61,14 @@ alias gca='git commit --amend'
 alias b='gh browse'
 alias pr='gh pr create'
 alias p='git push'
-alias pf='git push --force'
+alias pf='git push --force-with-lease'
 alias s='hub sync all'
 alias m='git checkout main'
 alias mm='git checkout -'
-# Get parent branch - https://stackoverflow.com/questions/3161204/how-to-find-the-nearest-parent-of-a-git-branch
-# Removed grep "\*" because it was causing issues in the terminal
-alias gp='git show-branch | grep -v "$(git rev-parse --abbrev-ref HEAD)" | sed "s/].*//" | head -n1 | sed "s/^.*\[//"'
+alias stash='git stash save --include-untracked "WIP"'
+# https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
+alias gp="git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
+alias rebasei="git rebase -v -i $(gp)"
 
 # alias gp='git show-branch \
 # | sed "s/].*//" \
