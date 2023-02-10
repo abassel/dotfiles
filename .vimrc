@@ -26,9 +26,10 @@ set tw=100
 set re=1
 
 " https://mkaz.blog/working-with-vim/lines/
+" https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
 " bubble single lines
-nmap <C-Up> :m .-2<CR>
-nmap <C-Down> :m  .+1<CR>
+nmap <Esc>[1;10A :m .-2<CR>  " mac os x shift + option + up
+nmap <Esc>[1;10B :m  .+1<CR> " mac os x shift + option + down
 " see same page for macros to bubble multiple lines
 
 set equalalways " Multiple windows, when created, are equal in size
