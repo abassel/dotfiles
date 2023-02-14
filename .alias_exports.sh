@@ -68,7 +68,7 @@ alias mm='git checkout -'
 alias stash='git stash save --include-untracked "WIP"'
 # https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
 alias gp="git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
-alias rebasei="git rebase -v -i $(gp)"
+alias rebasei='git rebase -v -i $(gp)'
 
 # alias gp='git show-branch \
 # | sed "s/].*//" \
