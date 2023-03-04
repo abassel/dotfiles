@@ -196,10 +196,12 @@ export FZF_DEFAULT_OPTS='
 --color info:254,prompt:37,spinner:108,pointer:235,marker:235
 '
 
+if [ -f ~/.secrets.sh ]; then
+    . ~/.secrets.sh
+fi
+
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-if [ -f ~/.secrets.sh ]; then
-    . ~/.secrets.sh
-fi
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"

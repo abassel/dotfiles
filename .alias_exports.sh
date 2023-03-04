@@ -145,3 +145,7 @@ export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/opencv@2/lib/pkgconfig
 
 # For bson (binary json) to be found by other tools:
 export LDFLAGS="${LDFLAGS} -L/usr/local/opt/bison/lib"
+
+# For nodejs 18
+export LDFLAGS="-L/opt/homebrew/opt/node@18/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/node@18/include"
