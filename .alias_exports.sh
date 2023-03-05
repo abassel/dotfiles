@@ -53,6 +53,8 @@ alias gl3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d
 alias branches="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
 alias branches2="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
 alias branches3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
+alias gdangling='git log --oneline --graph $(git fsck --no-reflog | grep "dangling commit" | cut -d " " -f 3)'  # https://stackoverflow.com/questions/89332/how-do-i-recover-a-dropped-stash-in-git
+alias gwipe='git reflog expire --expire-unreachable=now --all; git gc --prune=now'
 alias gs='git status'
 alias gd='git diff'
 alias gca='git commit --amend'
@@ -65,7 +67,7 @@ alias pf='git push --force-with-lease'
 alias s='hub sync all'
 alias m='git checkout main'
 alias mm='git checkout -'
-alias stash='git stash save --include-untracked "WIP"'
+alias stash='git stash save --include-untracked "WIP $(date +%b/%d_%H:%M:%S)"'
 # https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
 alias gp="git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
 alias rebasei='git rebase -v -i $(gp)'
