@@ -32,9 +32,12 @@ alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 # LS
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='lsd'
-alias ls='lsd -la'
-alias lt='lsd -la --tree'
+alias l='lsd --group-directories-first'
+alias ls='lsd -la --group-directories-first'
+alias lt='lsd -la --tree --depth 2 --group-directories-first'
+alias ltt='lsd -la --tree --depth 3 --group-directories-first'
+alias lttt='lsd -la --tree --depth 4 --group-directories-first'
+alias ltttt='lsd -la --tree --depth 5 --group-directories-first'
 
 # network
 alias ports='netstat -tulanp'
