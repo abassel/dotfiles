@@ -36,6 +36,21 @@ function gb() {
     git push -u origin $1
 }
 
+function ggrep() {
+    echo -e "${YELLOW} Searching for ${NC} $1 \n"
+    git grep $1 $(git rev-list --all)
+}
+
+function gauthor() {
+    # Git Extras - brew install git-extras
+    if [[ "$#" == 0 ]]; then
+        git authors --list | sort -u;
+        return
+    fi
+    # git files modified by a user
+    git log --no-merges --author=$1 --name-only --pretty=format:"" | sort -u
+}
+
 function review() {
     echo -e "${YELLOW} getting PR ${NC} $1 \n"
     gh pr checkout $1
