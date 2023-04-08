@@ -117,7 +117,19 @@ function cd() {
 }
 
 function h() {
-    history 1 -1 | fzf +s --tac -i --exact | sed -E 's/ *[0-9]*\*? *//' | tr -d '\n' | pbcopy
+    # Read from a shared command history with other computers
+    # Requires sed (GNU sed) 4.9 installed and in the path
+    # and HISTFILE="$HOME/Documents/zsh_history.$(hostname -s).txt" defined in .zshrc
+    # awk is removing duplicates because sort -u | uniq are failing
+    \cat ~/Documents/zsh_history.* | sed --binary 's/^[^;]*;//'  | awk '!a[$0]++' | fzf --tac -i --exact | tr -d '\n' | pbcopy
+}
+
+function h2() {
+    # NO AWK VERSION - DO NOT REMOVE DUPLICATE
+    # Read from a shared command history with other computers
+    # Requires sed (GNU sed) 4.9 installed and in the path
+    # and HISTFILE="$HOME/Documents/zsh_history.$(hostname -s).txt" defined in .zshrc
+    \cat ~/Documents/zsh_history.* | sed --binary 's/^[^;]*;//' | fzf --tac -i --exact | tr -d '\n' | pbcopy
 }
 
 function pw() {

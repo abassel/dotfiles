@@ -5,6 +5,7 @@
 export ZSH_DISABLE_COMPFIX="true"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:/usr/local/opt/opencv@2/bin"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # Support new gnu make 4.3 (brew install make) rather than default 3.8
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"  # point to gnu-sed so h alias does not break with: sed: RE error: illegal byte sequence
 
 # Source Functions
 if [ -f ~/.functions.sh ]; then
