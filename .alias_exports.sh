@@ -108,6 +108,31 @@ export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode - yellow
 export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
 
+# FZF
+# https://medium.com/better-programming/boost-your-command-line-productivity-with-fuzzy-finder-985aa162ba5d
+# https://hschne.at/2020/04/25/creating-a-fuzzy-shell-with-fzf-and-friends.html
+export FZF_DEFAULT_OPTS="
+-i
+--ansi
+--bold
+--reverse
+--info=inline
+--height=80%
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
+--prompt='∼ '
+--pointer='▶'
+--marker='✓'
+--bind '?:toggle-preview'
+--bind 'tab:down'
+"
+
+# # OLD FZF Color themes
+# # https://github.com/junegunn/fzf/wiki/Color-schemes
+# export FZF_DEFAULT_OPTS='
+# --color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254
+# --color info:254,prompt:37,spinner:108,pointer:235,marker:235
+# '
 
 # Tools and utilities
 # Start pyenv
