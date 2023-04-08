@@ -1,21 +1,14 @@
-# dotfiles
+<h1 align="center">
+  <br>
+  <a href="https://www.abassel.com" width="200"><img src="/dotfiles.svg" alt="" width="200"></a>
+  <br>
+  DotFiles
+  <br>
+</h1>
 
+<h4 align="center"> DotFiles are meant to be copied!</h4>
 
-This repository provides a single line install to a variety of dotfiles.
-
-
-## Deploying (option 1 - install script)
-
-The single line that you need to run:
-
-```
-
-curl https://raw.githubusercontent.com/abassel/dotfiles/master/boot.sh | bash
-
-
-```
-
-## Deploying (option 2  - git bare repo)
+##### 1 - Deploying with git bare repo
 
 ```
 
@@ -36,3 +29,4 @@ config checkout
 - [alrra's dotfiles](https://github.com/alrra/dotfiles)
 - [ryanoasis' dotfiles](https://github.com/ryanoasis/dotfiles)
 - [dotfiles](https://dotfiles.github.io)
+- [readme.md templates](https://www.readme-templates.com/)
