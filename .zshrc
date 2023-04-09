@@ -52,10 +52,9 @@ function sync_history() {
     # https://programmersought.com/article/85011433888/
     # Error during sorting
     echo -e "\e[33mMerging:"
-    #ls -1 ~/Documents/zsh_history*.txt
     wc -l ~/Documents/zsh_history*.txt
     echo ""
-    cat ~/Documents/zsh_history*.txt | LC_ALL=C sort -u | uniq > $HISTFILE
+    \cat ~/Documents/zsh_history*.txt | sed --binary 's/^[^;]*;//'  | awk '!a[$0]++' | LC_ALL=C sort -u > $HISTFILE
     echo -e "\e[33mSyncronized $(wc -l $HISTFILE) lines"
     history -r > /dev/null
 }
