@@ -156,22 +156,22 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Support powerline 9k
 # [[ ! -f ~/.oh-my-zsh ]] TODO: Should use this?
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    export ZSH=~/.oh-my-zsh
-    source ~/.oh-my-zsh
-    source $ZSH/oh-my-zsh.sh
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+# if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+#     export ZSH=~/.oh-my-zsh
+#     source ~/.oh-my-zsh
+#     source $ZSH/oh-my-zsh.sh
+#     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# fi
 
-# Support powerline 10k
+# Support powerlevel 10k
 if [ -f ~/powerlevel10k/powerlevel10k.zsh-theme ]; then
     source ~/powerlevel10k/powerlevel10k.zsh-theme
     # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
     [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    eval "$($(brew --prefix)/bin/brew shellenv)"
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
 
