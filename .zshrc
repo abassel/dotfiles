@@ -187,7 +187,8 @@ if type brew &>/dev/null; then
     compinit
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] &&
+source ~/.fzf.zsh
 
 
 if [ -f ~/.secrets.sh ]; then
