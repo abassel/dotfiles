@@ -21,6 +21,9 @@ function __branch() {
   target=$(
     (echo "$branches"; echo "$tags") |
     fzf --no-hscroll --no-multi -n 2 \
+        --color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254 \
+        --color info:254,prompt:37,spinner:108,pointer:235,marker:235 \
+        --layout=default \
         --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'" | sed 's/origin\///g') || return
   git checkout $(awk '{print $2}' <<<"$target" )
 }
