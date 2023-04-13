@@ -37,6 +37,7 @@ function gb() {
     hub sync all
     git checkout -b $1
     git push -u origin $1
+    git commit --allow-empty -m "🏁 Starting $1 $(date +%b/%d_%H:%M:%S)"
 }
 
 function ggrep() {
