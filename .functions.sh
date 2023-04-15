@@ -55,6 +55,18 @@ function gauthor() {
     git log --no-merges --author=$1 --name-only --pretty=format:"" | sort -u
 }
 
+
+function wip() {
+    # Do WIP without description
+    if [[ "$#" == 0 ]]; then
+        git add -A; git commit --no-verify -m "🚧 WIP 🚧 $(date +%b/%d_%H:%M:%S)"
+        return
+    fi
+    # Do WIP with custom description
+    git add -A; git commit --no-verify -m "🚧 WIP 🚧 $1 $(date +%b/%d_%H:%M:%S)"
+}
+
+
 function review() {
     echo -e "${YELLOW} getting PR ${NC} $1 \n"
     gh pr checkout $1

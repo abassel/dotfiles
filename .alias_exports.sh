@@ -70,7 +70,7 @@ alias pf='git push --force-with-lease'
 alias s='hub sync all'
 alias m='git checkout main'
 alias mm='git checkout -'
-alias stash='git stash save --include-untracked "WIP 🚧 $(date +%b/%d_%H:%M:%S)"'
+alias stash='git stash save --include-untracked "🚧 WIP 🚧 $(date +%b/%d_%H:%M:%S)"'
 alias gpop='git stash pop'
 # https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
 alias gp="git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
