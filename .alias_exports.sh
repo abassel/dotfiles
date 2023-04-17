@@ -57,7 +57,7 @@ alias branches="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yell
 alias branches2="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
 alias branches3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
 alias gdangling='git log --oneline --graph $(git fsck --no-reflog | grep "dangling commit" | cut -d " " -f 3)'  # https://stackoverflow.com/questions/89332/how-do-i-recover-a-dropped-stash-in-git
-alias gwipe='DANGER git reflog expire --expire-unreachable=now --all; git gc --prune=now'
+alias gwipe='DANGER git reflog expire --expire=30.days.ago --expire-unreachable=now --all; git gc --prune=now --aggressive'
 alias gs='git status'
 alias gd='git diff'
 alias gca='git commit --amend'
