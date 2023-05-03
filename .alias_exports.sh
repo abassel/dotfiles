@@ -64,7 +64,7 @@ alias gca='git commit --amend'
 # gb (git branch create) is defined as function
 # alias branch='gb'
 #alias b='gh browse'
-alias b='open $(git remote get-url origin | sed "s,git@,https://," | sed "s,.com:,.com/," )'
+alias b='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,.com:,.com/," )'
 alias pr='gh pr create'
 alias p='git push'
 alias pf='git push --force-with-lease'
