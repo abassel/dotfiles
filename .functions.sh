@@ -9,6 +9,12 @@ function debug() {
     strace -f -t -e trace=file $@
 }
 
+# global install pip
+# https://stackoverflow.com/questions/27410821/how-to-prevent-pip-install-without-virtualenv
+function gpip() {
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
 # select branch via fzf
 function __branch() {
   local tags branches target

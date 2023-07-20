@@ -101,6 +101,10 @@ export HISTSIZE=100000000
 export SAVEHIST=100000000
 export HISTORY_IGNORE="(ls|ll|l|config|review|exit|clear|history|man|tldr|bro|gs|rm|whois|bat|cp|cd|cdf|w|e|c|u|h|s|m|pr|b|d|gb|gl|gl1|gl2|gl3|glf|__help)"
 
+# PIP - https://stackoverflow.com/questions/27410821/how-to-prevent-pip-install-without-virtualenv
+export PIP_REQUIRE_VIRTUALENV=true
+# to install globally use gpip OR --> PIP_REQUIRE_VIRTUALENV="" pip
+
 # MAN/LESS
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
 export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
