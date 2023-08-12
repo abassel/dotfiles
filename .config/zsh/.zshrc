@@ -8,18 +8,15 @@ export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # Support new gnu make 4.
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"  # point to gnu-sed so h alias does not break with: sed: RE error: illegal byte sequence
 export PATH="/opt/homebrew/bin/:$PATH"
 
+
 # Source Functions
-if [ -f ~/.functions.sh ]; then
-    . ~/.functions.sh
-fi
+. ~/.config/zsh/functions.sh
 
 # Alias and exports definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.alias_exports.sh ]; then
-    . ~/.alias_exports.sh
-fi
+. ~/.config/zsh/alias_exports.sh
 
 # CUSTOM History configuration
 # - common configurations in .alias_exports.sh and .functions.sh
@@ -151,9 +148,9 @@ export LC_ALL="en_US.UTF-8"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# CUSTOM ICONIC CONFIGURATION
-export ZSH_POWERLINE_SHOW_USER=false
-export PATH="/usr/local/sbin:$PATH"
+# # CUSTOM ICONIC CONFIGURATION
+# export ZSH_POWERLINE_SHOW_USER=false
+# export PATH="/usr/local/sbin:$PATH"
 
 # Support powerline 9k
 # [[ ! -f ~/.oh-my-zsh ]] TODO: Should use this?
@@ -165,30 +162,40 @@ export PATH="/usr/local/sbin:$PATH"
 #     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # fi
 
-# Support powerlevel 10k
-if [ -f ~/powerlevel10k/powerlevel10k.zsh-theme ]; then
-    source ~/powerlevel10k/powerlevel10k.zsh-theme
-    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if type brew &>/dev/null; then
     eval "$($(brew --prefix)/bin/brew shellenv)"
-    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
-export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
+
+# Load powerlevel 10k
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+source ~/.config/zsh/p10k.zsh
+
 
 # Github cli completition
 eval "$(gh completion --shell zsh)"
 
+
+# Requires -> brew install zsh-completions
 # compinit  # Required for poetry autocomplet
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-    autoload -Uz compinit
-    compinit
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+    #FPATH=~/zsh-completions:$FPATH
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-# [ -f ~/.fzf.zsh ] &&
-source ~/.fzf.zsh
+# Require -> sudo pacman -S extra/zsh-completions
+# https://stackoverflow.com/questions/29196718/zsh-highlight-on-tab
+zstyle ':completion:*' menu select
+autoload -Uz compinit
+compinit
+
+
+source ~/.config/scripts/fzf.zsh
 
 
 if [ -f ~/.secrets.sh ]; then

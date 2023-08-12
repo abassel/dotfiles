@@ -6,20 +6,11 @@
 [ -z "$PS1" ] && return
 
 # Source Functions
-if [ -f ~/.functions.sh ]; then
-    . ~/.functions.sh
-fi
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
+. ~/.config/zsh/functions.sh
 
 # Source alias and exports
-if [ -f ~/.alias_exports.sh ]; then
-    . ~/.alias_exports.sh
-fi
+. ~/.config/zsh/alias_exports.sh
+
 
 ######### HISTORY section #########
 
@@ -111,5 +102,4 @@ if [ -f ~/fzf-bash-completion.sh ]; then
     bind -x '"\t": fzf_bash_completion'
 fi
 
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source ~/.config/scripts/fzf.bash
