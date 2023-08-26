@@ -1,0 +1,16 @@
+[user]
+	name = Alexandre Bassel
+	email = 11035784+abassel@users.noreply.github.com
+[gitreview]
+     username = abassel
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	ignorecase = false
+	pager = cat
+[grep]
+	extendRegexp = true
+	lineNumber = true
