@@ -15,6 +15,10 @@ if $(which bat >& /dev/null); then alias cat='bat --paging=never'; fi
 alias ping='prettyping'
 alias serve="python -m SimpleHTTPServer &"
 
+# https://wiki.archlinux.org/title/XDG_Base_Directory
+export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC'
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
+
 # https://unix.stackexchange.com/questions/83342/how-to-keep-dotfiles-system-agnostic
 case $_myos in
   'Linux')   alias u='apt update -y; apt upgrade -y; echo -e "Consider ${YELLOW}apt dist-upgrade -y${NC}"' ;;
