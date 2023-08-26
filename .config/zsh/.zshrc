@@ -167,7 +167,7 @@ if type brew &>/dev/null; then
 fi
 
 # Load powerlevel 10k
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/powerlevel10k_github/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.config/zsh/p10k.zsh
