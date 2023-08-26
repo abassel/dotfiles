@@ -181,6 +181,7 @@ eval "$(gh completion --shell zsh)"
 # compinit  # Required for poetry autocomplet
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     #FPATH=~/zsh-completions:$FPATH
