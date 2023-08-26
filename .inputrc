@@ -1,8 +1,0 @@
-
-# https://lornajane.net/posts/2011/navigating-bash-history-with-ctrlr
-# https://coderwall.com/p/oqtj8w/the-single-most-useful-thing-in-bash
-
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-set show-all-if-ambiguous on
-set completion-ignore-case on
