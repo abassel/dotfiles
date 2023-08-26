@@ -17,6 +17,7 @@ alias serve="python -m SimpleHTTPServer &"
 
 # https://wiki.archlinux.org/title/XDG_Base_Directory
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
 
 # https://wiki.archlinux.org/title/XDG_Base_Directory
 export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC'
