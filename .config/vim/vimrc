@@ -31,6 +31,8 @@ set re=1
 nmap <Esc>[1;10A :m .-2<CR>  " mac os x shift + option + up
 nmap <Esc>[1;10B :m  .+1<CR> " mac os x shift + option + down
 " see same page for macros to bubble multiple lines
+nmap <Esc>[1;4A :m .-2<CR>  " linux shift + option + up
+nmap <Esc>[1;4B :m  .+1<CR> " linux shift + option + down
 
 set equalalways " Multiple windows, when created, are equal in size
 set splitbelow splitright
