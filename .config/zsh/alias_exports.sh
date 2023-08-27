@@ -67,7 +67,10 @@ alias branches3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yel
 alias gdangling='git log --oneline --graph $(git fsck --no-reflog | grep "dangling commit" | cut -d " " -f 3)'  # https://stackoverflow.com/questions/89332/how-do-i-recover-a-dropped-stash-in-git
 alias gwipe='DANGER git reflog expire --expire=30.days.ago --expire-unreachable=now --all; git gc --prune=now --aggressive'
 alias gs='git status'
+alias gsi='git status --ignored'
+alias i='git status --ignored'
 alias gd='git diff'
+alias gds='git diff --staged'
 alias gca='git commit --amend'
 # gb (git branch create) is defined as function
 # alias branch='gb'
