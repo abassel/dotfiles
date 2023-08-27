@@ -11,6 +11,7 @@
 [core]
 	ignorecase = false
 	pager = cat
+	editor = vim
 [grep]
 	extendRegexp = true
 	lineNumber = true
