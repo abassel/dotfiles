@@ -1,0 +1,97 @@
+
+
+# https://www.w3docs.com/learn-git/git-subtree.html
+# git subtree add --prefix .vim/bundle/vim-double-upon https:/hostname.org/example/vim-plugins.git master --squash
+
+cd ~
+config subtree add --prefix .config/fzf_github https://github.com/junegunn/fzf.git master --squash 
+
+
+config subtree add --prefix .config/zsh-completions_github https://github.com/zsh-users/zsh-completions.git master --squash
+
+config subtree add --prefix .config/powerlevel10k_github https://github.com/romkatv/powerlevel10k.git master --squash
+
+
+******************************************************************************
+
+git_add_repo https://github.com/romkatv/powerlevel10k.git .config/powerlevel10k_github
+
+git_add_repo https://github.com/junegunn/fzf.git .config/fzf_github
+
+git_add_repo https://github.com/zsh-users/zsh-completions.git .config/zsh-completions_github
+
+******************************************************************************
+#!/bin/bash
+
+clone_repo_with_sha() {
+    # Define your repository URL and target directory
+    local repo_url="$1"
+    local target_dir="$2"
+
+    # Clone the repository with depth 1
+    git clone --depth 1 "$repo_url" "$target_dir"
+
+    # Navigate to the cloned repository
+    cd "$target_dir"
+
+    # Get the SHA reference of the current commit
+    local sha_ref=$(git log --pretty=format:"%H" -n 1)
+
+    # Remove the .git directory
+    rm -rf .git
+
+    # Initialize a new Git repository
+    git init
+
+    # Add all files in the repository
+    git add .
+
+    # Commit the content with the SHA reference in the message
+    git commit -m "Content at commit $sha_ref"
+
+    # You can add remote and push if needed
+    # git remote add origin "$repo_url"
+    # git push -u origin master
+
+    # Optionally, you can add the remote and push the changes if needed
+
+    echo "Repository cloned and content committed with SHA reference: $sha_ref"
+}
+
+# Example usage
+clone_repo_with_sha "https://github.com/example/repo.git" "my_repo"
+
+
+******************************************************************************
+
+#!/bin/bash
+
+# Use the current directory as the target directory
+target_directory=$(pwd)
+
+# Define the command you want to execute inside each Git repository (parameterized)
+command_to_execute="$1" # Pass your desired command as an argument when running the script
+
+# Function to search for Git repositories and execute the command
+find_git_repos_and_execute_command() {
+  local base_dir="$1"
+  local repos=()
+  while IFS= read -rd '' repo; do
+    repos+=("$repo")
+  done < <(find "$base_dir" -type d -name .git -print0)
+  for repo in "${repos[@]}"; do
+    local repo_path="${repo%.git}"
+    echo "Entering $repo_path"
+    (cd "$repo_path" && $command_to_execute)
+    echo "Exiting $repo_path"
+  done
+}
+
+# Check if a command is provided as an argument
+if [ -z "$command_to_execute" ]; then
+  echo "Please provide a command to execute as an argument."
+  exit 1
+fi
+
+# Start the search for Git repositories and execute the command
+find_git_repos_and_execute_command "$target_directory"
