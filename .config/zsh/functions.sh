@@ -81,6 +81,44 @@ function review() {
     cat REVIEW.txt
 }
 
+
+function git_add_repo() {
+    # Define your repository URL and target directory
+    local repo_url="$1"
+    local target_dir="$2"
+
+    # TODO: support sha when it is provided.
+
+    rm -rf $target_dir
+
+    # Clone the repository with depth 1
+    git clone --depth 1 "$repo_url" "$target_dir"
+
+    # Navigate to the cloned repository
+    pushd "$target_dir"
+
+    # Get the SHA reference of the current commit
+    local sha_ref=$(git log --pretty=format:"%h" -n 1)
+
+    # Remove the .git directory
+    rm -rf .git
+
+    # Add all files in the repository
+    git add .
+
+    # Commit the content with the SHA reference in the message
+    git commit -m "Content: git_add_repo $repo_url $target_dir @ $sha_ref"
+
+    # return back to original directory
+    popd
+
+    echo "Repository cloned and content committed with SHA reference: $sha_ref"
+}
+
+# Example usage
+# git_add_repo "https://github.com/example/repo.git" "my_repo"
+
+
 # Support functions for glf
 alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
 _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
