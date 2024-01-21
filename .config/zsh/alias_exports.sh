@@ -67,6 +67,9 @@ alias gl3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d
 alias branches="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
 alias branches2="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
 alias branches3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
+alias b="branches"
+alias b2="branches2"
+alias b3="branches3"
 alias gdangling='git log --oneline --graph $(git fsck --no-reflog | grep "dangling commit" | cut -d " " -f 3)'  # https://stackoverflow.com/questions/89332/how-do-i-recover-a-dropped-stash-in-git
 alias gwipe='DANGER git reflog expire --expire=30.days.ago --expire-unreachable=now --all; git gc --prune=now --aggressive'
 alias gs='git status'
@@ -78,7 +81,7 @@ alias gca='git commit --amend'
 # gb (git branch create) is defined as function
 # alias branch='gb'
 #alias b='gh browse'
-alias b='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,.com:,.com/," )'
+alias o='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,.com:,.com/," )'
 alias pr='gh pr create'
 alias p='git push'
 alias pf='git push --force-with-lease'
