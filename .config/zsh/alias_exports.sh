@@ -47,6 +47,9 @@ alias ltt='lsd -la --tree --depth 3 --group-directories-first'
 alias lttt='lsd -la --tree --depth 4 --group-directories-first'
 alias ltttt='lsd -la --tree --depth 5 --group-directories-first'
 
+# tldr help (sudo pacman -S tealdeer)
+alias help='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
+
 # network
 alias ports='netstat -tulanp'
 
