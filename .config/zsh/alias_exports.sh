@@ -40,6 +40,9 @@ alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 # /etc managed by git
 alias etc='sudo git --git-dir=/etc/.git --work-tree=/etc'
 
+# ~/notes managed by git
+# see functions.sh
+
 # LS
 alias ll='ls -alF'
 alias la='ls -A'

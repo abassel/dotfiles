@@ -148,6 +148,16 @@ function squash() {
 }
 
 
+function notes() {
+    if [[ "$#" == 0 ]]; then
+        vscodium ~/notes
+        return
+    fi
+    echo -e "Executing git command in notes repo ${YELLOW} $@ ${NC}"
+    git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
+}
+
+
 # https://github.com/junegunn/fzf/wiki/examples#cd
 function cdf() {
     local dir
