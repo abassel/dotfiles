@@ -37,6 +37,9 @@ esac
 alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 # then -> config config --local status.showUntrackedFiles no
 
+# /etc managed by git
+alias etc='sudo git --git-dir=/etc/.git --work-tree=/etc'
+
 # LS
 alias ll='ls -alF'
 alias la='ls -A'
