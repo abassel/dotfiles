@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://www.abassel.com" width="200"><img src="/dotfiles.svg" alt="" width="200"></a>
+  <a href="https://www.abassel.com" width="200"><img src="/.config/dotfiles.svg" alt="" width="200"></a>
   <br>
   DotFiles
   <br>
