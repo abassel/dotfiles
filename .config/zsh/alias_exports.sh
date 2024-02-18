@@ -43,6 +43,12 @@ alias etc='sudo git --git-dir=/etc/.git --work-tree=/etc'
 # ~/notes managed by git
 # see functions.sh
 
+
+# Youtube download - requires `sudo pacman -S yt-dlp` or `brew install yt-dlp`
+alias ydl='yt-dlp -o "%(playlist_index)s-%(title)s by %(uploader)s on %(upload_date)s in %(playlist)s.%(ext)s" --format "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]" '
+alias ydl_audio='yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 ' # extracted audio (between 0 (best) and 10 (worst), default = 5):
+
+
 # LS
 alias ll='ls -alF'
 alias la='ls -A'
