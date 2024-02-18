@@ -30,6 +30,11 @@ case $_myos in
   'Darwin')  alias u='brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup; rm -rf $(brew --cache)' ;;
 esac
 
+case $_myos in
+  'Linux')   alias open='xdg-open' ;;
+esac
+
+
 # Dot file management
 # https://www.youtube.com/watch?v=tBoLDpTWVOM
 # https://www.atlassian.com/git/tutorials/dotfiles
