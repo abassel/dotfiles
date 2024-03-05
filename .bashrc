@@ -3,7 +3,7 @@
 # for examples
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+# [ -z "$PS1" ] && return  # Removed so alias gm(git multi repo) can load all git alias
 
 # Source Functions
 . ~/.config/zsh/functions.sh

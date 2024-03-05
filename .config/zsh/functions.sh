@@ -2,6 +2,11 @@
 
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
 NC='\033[0m' # No Color
 
 function debug() {
@@ -147,6 +152,22 @@ function squash() {
     #git stash pop
 }
 
+# git multi repo that support alias defined in rc files
+function gm() {
+    command_to_execute="$@"
+    if [ -z "$command_to_execute" ]; then
+        echo "Please provide a command to execute as an argument."
+        exit 1
+    fi
+
+    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${BLUE}$PWD${NC}"
+
+    for repo in $(find . -name .git -type d  -exec dirname {} \;); do
+        echo "${YELLOW} $repo ${NC}"
+        bash -i -c "cd '$repo' && source ~/.bashrc && $command_to_execute"
+        echo "${BLUE}===========${NC}"
+    done
+}
 
 function notes() {
     if [[ "$#" == 0 ]]; then
