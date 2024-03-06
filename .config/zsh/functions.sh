@@ -160,9 +160,43 @@ function gm() {
         exit 1
     fi
 
-    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${BLUE}$PWD${NC}"
+    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${GREEN}$PWD${NC}"
 
     for repo in $(find . -name .git -type d  -exec dirname {} \;); do
+        echo "${YELLOW} $repo ${NC}"
+        bash -i -c "cd '$repo' && source ~/.bashrc && $command_to_execute"
+        echo "${BLUE}===========${NC}"
+    done
+}
+
+# same as above but git multi repo with -maxdepth 2
+function gm1() {
+    command_to_execute="$@"
+    if [ -z "$command_to_execute" ]; then
+        echo "Please provide a command to execute as an argument."
+        exit 1
+    fi
+
+    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${GREEN}$PWD${NC}"
+
+    for repo in $(find . -maxdepth 2 -name .git -type d  -exec dirname {} \;); do
+        echo "${YELLOW} $repo ${NC}"
+        bash -i -c "cd '$repo' && source ~/.bashrc && $command_to_execute"
+        echo "${BLUE}===========${NC}"
+    done
+}
+
+# same as above but git multi repo with -maxdepth 3
+function gm2() {
+    command_to_execute="$@"
+    if [ -z "$command_to_execute" ]; then
+        echo "Please provide a command to execute as an argument."
+        exit 1
+    fi
+
+    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${GREEN}$PWD${NC}"
+
+    for repo in $(find . -maxdepth 3 -name .git -type d  -exec dirname {} \;); do
         echo "${YELLOW} $repo ${NC}"
         bash -i -c "cd '$repo' && source ~/.bashrc && $command_to_execute"
         echo "${BLUE}===========${NC}"
