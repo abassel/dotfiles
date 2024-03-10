@@ -5,6 +5,7 @@ YELLOW='\033[1;33m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 MAGENTA='\033[0;35m'
+MAGENTABRIGHT='\u001b[35;1m'
 CYAN='\033[0;36m'
 WHITE='\033[1;37m'
 NC='\033[0m' # No Color
@@ -160,7 +161,7 @@ function gm() {
         exit 1
     fi
 
-    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${GREEN}$PWD${NC}"
+    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${MAGENTABRIGHT}$PWD${NC}"
 
     for repo in $(find . -name .git -type d  -exec dirname {} \;); do
         echo "${YELLOW} $repo ${NC}"
@@ -177,7 +178,7 @@ function gm1() {
         exit 1
     fi
 
-    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${GREEN}$PWD${NC}"
+    echo "Executing ${YELLOW}$command_to_execute${NC} in repos one level under ${MAGENTABRIGHT}$PWD${NC}"
 
     for repo in $(find . -maxdepth 2 -name .git -type d  -exec dirname {} \;); do
         echo "${YELLOW} $repo ${NC}"
@@ -194,7 +195,7 @@ function gm2() {
         exit 1
     fi
 
-    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${GREEN}$PWD${NC}"
+    echo "Executing ${YELLOW}$command_to_execute${NC} in repos two levels under ${MAGENTABRIGHT}$PWD${NC}"
 
     for repo in $(find . -maxdepth 3 -name .git -type d  -exec dirname {} \;); do
         echo "${YELLOW} $repo ${NC}"
