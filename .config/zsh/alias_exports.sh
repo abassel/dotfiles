@@ -78,15 +78,18 @@ alias myip=ip_pub
 
 # Git
 alias ga='git add'
-alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gl2="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gl3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias branches="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
-alias branches2="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
-alias branches3="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
-alias b="branches"
-alias b2="branches2"
-alias b3="branches3"
+alias gl="git log --color --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gl2="git log --color --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(auto)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gl3="git log --color --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(auto)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias branches_all="git branch -r  | grep -v HEAD | xargs -L1 git show -s --oneline --pretty=format:'-%C(auto)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset - %s%n'"  # https://stackoverflow.com/questions/36026374/is-there-a-script-to-list-git-branches-created-by-me
+alias branches2_all="git branch -r | grep -v HEAD | xargs -L1 git show -s --oneline --pretty=format:'-%C(auto)%d%Creset %Cgreen(%ci) %C(bold blue)<%an>%Creset - %s%n'"
+alias branches3_all="git branch -r | grep -v HEAD | xargs -L1 git show -s --oneline --pretty=format:'-%C(auto)%d%Creset %Cgreen(%cD) %C(bold blue)<%an>%Creset - %s%n'"
+alias branches="git branch -r --no-merge  | grep -v HEAD | xargs -L1 git show -s --oneline --pretty=format:'-%C(auto)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset - %s%n'"  # https://stackoverflow.com/questions/36026374/is-there-a-script-to-list-git-branches-created-by-me
+alias branches2="git branch -r --no-merge | grep -v HEAD | xargs -L1 git show -s --oneline --pretty=format:'-%C(auto)%d%Creset %Cgreen(%ci) %C(bold blue)<%an>%Creset - %s%n'"
+alias branches3="git branch -r --no-merge | grep -v HEAD | xargs -L1 git show -s --oneline --pretty=format:'-%C(auto)%d%Creset %Cgreen(%cD) %C(bold blue)<%an>%Creset - %s%n'"
+alias b="git log --color --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
+alias b2="git log --color --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(auto)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
+alias b3="git log --color --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(auto)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --abbrev-commit --simplify-by-decoration --all"
 alias gdangling='git log --oneline --graph $(git fsck --no-reflog | grep "dangling commit" | cut -d " " -f 3)'  # https://stackoverflow.com/questions/89332/how-do-i-recover-a-dropped-stash-in-git
 alias gwipe='DANGER git reflog expire --expire=30.days.ago --expire-unreachable=now --all; git gc --prune=now --aggressive'
 alias gs='git status'
