@@ -130,8 +130,17 @@ alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bo
 _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
 _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
 
-function glf() {
+function glf_old() {
     glNoGraph |
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+            --ansi --preview="$_viewGitLogLine" \
+            --header "enter to view, ctrl-c to copy hash" \
+            --bind "enter:execute:$_viewGitLogLine   | less -R" \
+            --bind "ctrl-c:execute:$_gitLogLineToHash | pbcopy"
+}
+
+function glf() {
+    git log --color=always --graph --format="%C(auto)%h%d %s %C(black)%C(bold)%cr%  %C(bold blue)<%an>%Creset" $@ |
         fzf --no-sort --reverse --tiebreak=index --no-multi \
             --ansi --preview="$_viewGitLogLine" \
             --header "enter to view, ctrl-c to copy hash" \
