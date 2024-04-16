@@ -19,6 +19,9 @@ config checkout
 
 ```
 
+## TODO :zap:
+- implement tmux sessionizer from ellijah manor - https://github.com/elijahmanor/dotfiles/blob/becb603445247727b37c2f66a88ca5d60eeff7fb/bin/bin/tmux-sessionizer
+
 ## References :notebook:
 - [awesome-dotfiles](https://github.com/webpro/awesome-dotfiles)
 - [jessfraz dotfiles](https://github.com/jessfraz/dotfiles)
