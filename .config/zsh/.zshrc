@@ -8,6 +8,11 @@ export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" # Support new gnu make 4.
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"  # point to gnu-sed so h alias does not break with: sed: RE error: illegal byte sequence
 export PATH="/opt/homebrew/bin/:$PATH"
 
+# Require -> sudo pacman -S extra/zsh-completions
+# https://stackoverflow.com/questions/29196718/zsh-highlight-on-tab
+zstyle ':completion:*' menu select
+autoload -Uz compinit
+compinit
 
 # Source Functions
 . ~/.config/zsh/functions.sh
@@ -188,13 +193,6 @@ else
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
-
-# Require -> sudo pacman -S extra/zsh-completions
-# https://stackoverflow.com/questions/29196718/zsh-highlight-on-tab
-zstyle ':completion:*' menu select
-autoload -Uz compinit
-compinit
-
 
 source ~/.config/scripts/fzf.zsh
 
