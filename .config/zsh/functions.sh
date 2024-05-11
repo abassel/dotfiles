@@ -72,6 +72,24 @@ function ai_code() {
 
 }
 
+
+function ai_nocode() {
+
+    local question
+
+    # If only one parameter is specified, assume the other one is default
+    if [[ $# == 1 ]]; then
+        question=$1
+    else
+        echo "Provide only one parameter - question surrounded with quotes."
+        exit 1
+    fi
+
+    ollama list | awk 'NR>1 {print $1}' | grep -v "code" | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
+
+}
+
+
 # select branch via fzf
 function __branch() {
   local tags branches target
