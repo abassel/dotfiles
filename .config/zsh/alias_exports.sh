@@ -34,6 +34,11 @@ case $_myos in
   'Linux')   alias open='xdg-open' ;;
 esac
 
+case $_myos in
+  'Linux')   alias code='vscodium' ;;
+  'Darwin')  alias code='/Applications/VSCodium.app/Contents/MacOS/Electron' ;;
+esac
+
 
 # Dot file management
 # https://www.youtube.com/watch?v=tBoLDpTWVOM
