@@ -27,7 +27,7 @@ function ai() {
 
     # If only one parameter is specified, assume the other one is default
     if [[ $# == 1 ]]; then
-        model="codellama"
+        model="llama3.1"
         question=$1
     else
         model=$1
