@@ -40,6 +40,13 @@ case $_myos in
 esac
 
 
+case $_myos in
+  'Linux')   alias o='xdg-open $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,:2233,," | sed "s,.com:,.com/," | sed "s,ssh://,,")' ;;
+  'FreeBSD') alias o='echo NOT IMPLEMENTED' ;;
+  'Darwin')  alias o='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,:2233,," | sed "s,.com:,.com/," | sed "s,ssh://,,")' ;;
+esac
+
+
 # Dot file management
 # https://www.youtube.com/watch?v=tBoLDpTWVOM
 # https://www.atlassian.com/git/tutorials/dotfiles
@@ -106,7 +113,7 @@ alias gca='git commit --amend'
 # gb (git branch create) is defined as function
 # alias branch='gb'
 #alias b='gh browse'
-alias o='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,.com:,.com/," | sed "s,ssh://,,")'
+# alias o='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,.com:,.com/," | sed "s,ssh://,,")'
 alias pr='gh pr create'
 alias p='git push'
 alias pf='git push --force-with-lease'
