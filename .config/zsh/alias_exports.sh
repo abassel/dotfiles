@@ -51,11 +51,13 @@ esac
 # https://www.youtube.com/watch?v=tBoLDpTWVOM
 # https://www.atlassian.com/git/tutorials/dotfiles
 # make sure you have -> git init --bare $HOME/dotfiles
-alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+# alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+# see functions.sh
 # then -> config config --local status.showUntrackedFiles no
 
 # /etc managed by git
-alias etc='sudo git --git-dir=/etc/.git --work-tree=/etc'
+#alias etc='sudo git --git-dir=/etc/.git --work-tree=/etc'
+# see functions.sh
 
 # ~/notes managed by git
 # see functions.sh

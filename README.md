@@ -8,8 +8,24 @@
 
 <h4 align="center"> DotFiles are meant to be copied!</h4>
 
-##### 1 - Deploying with git bare repo
+##### 1 - Deploying with git
 
+```
+git clone git@github.com:abassel/dotfiles.git
+cp -R dotfiles/.git ~/.git
+cd ~
+git config --local status.showUntrackedFiles no
+git diff
+git checkout
+<OPEN AND CLOSE TERMINAL>
+# config <COMMAND>
+# ex:
+config git status
+config git diff
+```
+
+
+##### 2 - ~~Deploying with git bare repo~~(OUTDATED)
 ```
 
 alias config='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
