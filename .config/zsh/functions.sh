@@ -284,11 +284,46 @@ function gm2() {
 
 function notes() {
     if [[ "$#" == 0 ]]; then
-        vscodium ~/notes
+        # see code alias in alias_exports.sh
+        code ~/notes
         return
     fi
-    echo -e "Executing git command in notes repo ${YELLOW} $@ ${NC}"
-    git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
+    command_to_execute="$@"
+    echo -e "Executing command in notes repo ${YELLOW} $command_to_execute ${NC}"
+    #git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
+    bash -i -c "cd '$HOME/notes' && source ~/.bashrc && $command_to_execute"
+}
+
+
+function etc() {
+    # https://unix.stackexchange.com/questions/91384/how-is-sudo-set-to-not-change-home-in-ubuntu-and-how-to-disable-this-behavior
+    # Requires config changes to sudo in order preserver $HOME
+    # sudo visudo
+    #   -# Defaults env_keep += "HOME"
+    #   +Defaults env_keep += "HOME"
+    #
+    if [[ "$#" == 0 ]]; then
+        cd /etc
+        return
+    fi
+    command_to_execute="$@"
+    my_home="$HOME"
+    echo -e "Executing command in etc repo ${YELLOW} $command_to_execute ${NC}"
+    #git --git-dir=/etc/.git --work-tree=/etc $@
+    sudo bash -i -c "cd /etc && source $my_home/.bashrc && $command_to_execute"
+}
+
+
+function config() {
+    if [[ "$#" == 0 ]]; then
+        # see code alias in alias_exports.sh
+        code ~/
+        return
+    fi
+    command_to_execute="$@"
+    echo -e "Executing command in config repo ${YELLOW} $command_to_execute ${NC}"
+    #git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
+    bash -i -c "cd ~ && source ~/.bashrc && $command_to_execute"
 }
 
 
