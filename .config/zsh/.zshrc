@@ -14,14 +14,15 @@ zstyle ':completion:*' menu select
 autoload -Uz compinit
 compinit
 
-# Source Functions
-. ~/.config/zsh/functions.sh
-
 # Alias and exports definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 . ~/.config/zsh/alias_exports.sh
+
+# Source Functions
+. ~/.config/zsh/functions.sh
+
 
 # CUSTOM History configuration
 # - common configurations in .alias_exports.sh and .functions.sh
