@@ -17,7 +17,7 @@ function debug() {
 
 # global install pip
 # https://stackoverflow.com/questions/27410821/how-to-prevent-pip-install-without-virtualenv
-function gpip() {
+function pip_global() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
 
