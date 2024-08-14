@@ -293,6 +293,7 @@ function notes() {
     #git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
     bash -i -c "cd '$HOME/notes' && source ~/.bashrc && $command_to_execute"
 }
+alias n=notes
 
 
 function etc() {
