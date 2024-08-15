@@ -90,6 +90,9 @@ alias ip_local="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | grep -
 alias ips="ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-9]\\+\\.\\)\\{3\\}[0-9]\\+\\)\\|[a-fA-F0-9:]\\+\\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 alias myip=ip_pub
 
+# AI
+alias aider_local="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --model=ollama/llama3.1 --no-auto-commits"
+
 # Git
 alias ga='git add'
 alias gl="git log --color --graph --pretty=format:'%C(yellow)%h%C(reset) -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
