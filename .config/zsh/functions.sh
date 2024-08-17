@@ -193,6 +193,34 @@ function git_add_repo() {
 # Example usage
 # git_add_repo "https://github.com/example/repo.git" "my_repo"
 
+function git_merge_external_local_repo(){
+    # Based on: https://josh.fail/2022/merging-git-repos-with-git-filter-repo/
+    # Define your repository URL and target directory
+    local repo_path="$1"
+    local target_dir="$2"
+
+    # Clone the repository with depth 1
+    git clone --depth 1 "$repo_path" "__$target_dir"
+
+    pushd "__$target_dir"
+
+    git filter-repo --force --to-subdirectory "$target_dir"/
+
+    popd
+
+    git remote add "__$target_dir" "__$target_dir"
+
+    git fetch "__$target_dir"
+
+    # Support multiple branches
+    git merge "__$target_dir"/master --allow-unrelated-histories --no-ff -m "Add $target_dir"
+
+    git remote rm "__$target_dir"
+
+    rm -rf "__$target_dir"
+}
+
+
 
 # Support functions for glf
 alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
