@@ -261,6 +261,54 @@ function git_merge_external_repo_in_subdir_from_main(){
 }
 
 
+function git_show_deleted_files(){
+    echo "* ${YELLOW}Show deleted files in two formats${NC}"
+    echo "* ${YELLOW}Reference:${NC}"
+    echo "*- https://waylonwalker.com/git-find-deleted-files/"
+    echo "*- https://stackoverflow.com/questions/6017987/how-can-i-list-all-the-deleted-files-in-a-git-repository"
+    echo "*${BLUE}===========${NC}"
+
+    git log --all --diff-filter D --name-only
+
+    git log --all --diff-filter D --pretty="format:" --name-only | sed '/^$/d' | sort -u
+}
+
+
+function git_show_largest_10_files(){
+    echo "* ${YELLOW}Show top 10 file in repo${NC}"
+    echo "* ${YELLOW}Reference:${NC}"
+    echo "*- https://stackoverflow.com/questions/9456550/how-can-i-find-the-n-largest-files-in-a-git-repository"
+    echo "*${MAGENTABRIGHT}NOTE: Might need `brew install coreutils` to install numfmt in macOS${NC}"
+    echo "*${BLUE}===========${NC}"
+
+    git rev-list --objects --all \
+    | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+    | sed -n 's/^blob //p' \
+    | sort --numeric-sort --key=2 \
+    | tail -n 10 \
+    | cut -c 1-12,41- \
+    | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
+}
+
+
+function git_move_folder_to_root(){
+    if [[ "$#" == 0 ]]; then
+        echo "${YELLOW}Move subfolder to root in repo${NC}"
+        echo "${YELLOW}Reference:${NC}"
+        echo "- https://www.google.com/search?q=git+filter+branch+move+subdirectory+to+root"
+        echo "- https://stackoverflow.com/questions/3142419/how-can-i-move-a-directory-in-a-git-repo-for-all-commits"
+        echo "${BLUE}$(whence -v git_move_folder_to_root)${NC}"
+        echo "${BLUE}=====Implementation details======${NC}"
+        whence -f git_move_folder_to_root | bat --language=bash
+        echo "${MAGENTABRIGHT} >>> ERROR: Folder name is required parameter${NC}";
+        echo "${MAGENTABRIGHT} >>> ERROR: You would not see all this output if you had given a parameter${NC}"
+        return
+    fi
+
+    git filter-repo --subdirectory-filter $1 -- --all
+}
+
+
 # Support functions for glf
 alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
 _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
