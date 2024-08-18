@@ -309,6 +309,44 @@ function git_move_folder_to_root(){
 }
 
 
+function git_remove_file_from_history(){
+    if [[ "$#" == 0 ]]; then
+        echo "${YELLOW}Remove/Wipe/Purge file from repo history${NC}"
+        echo "${YELLOW}Reference:${NC}"
+        echo "- https://www.google.com/search?q=git-filter-repo+remove+file+from+history"
+        echo "- https://marcofranssen.nl/remove-files-from-git-history-using-git-filter-repo"
+        echo "- https://blog.gitguardian.com/rewriting-git-history-cheatsheet/"
+        echo "${MAGENTABRIGHT} >>> NOTE: DO NOT RUN IF YOU HAVE STASHES${NC}"
+        echo "${MAGENTABRIGHT} >>> NOTE: Need to install `git-filter-repo`${NC}"
+        echo "${BLUE}$(whence -v git_remove_file_from_history)${NC}"
+        echo "${BLUE}=====Implementation details======${NC}"
+        whence -f git_remove_file_from_history | bat --language=bash
+        echo "${MAGENTABRIGHT} >>> ERROR: Folder/File name is required parameter${NC}";
+        echo "${MAGENTABRIGHT} >>> ERROR: You would not see all this output if you had given a parameter${NC}"
+        return
+    fi
+
+    if [ $(git stash list | wc -l) -gt 0 ]; then
+        echo "${MAGENTABRIGHT} >>> ERROR: CANNOT RUN IF YOU HAVE STASHES${NC}";
+        return
+    fi
+
+    echo "${BLUE}==You might need this to roll back==${NC}"
+    gl | head -n 10
+
+    echo "${BLUE}==You might need this to add a remote==${NC}"
+    git remote -v
+
+    echo "${BLUE}=============================${NC}"
+    git filter-repo --force --invert-paths --path $1
+
+    echo "${BLUE}==You might need this to compare with previous tree==${NC}"
+    gl | head -n 10
+
+    echo "${BLUE}==You might need to add remote again==${NC}"
+}
+
+
 # Support functions for glf
 alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
 _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
