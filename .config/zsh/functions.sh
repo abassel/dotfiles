@@ -278,7 +278,7 @@ function git_show_largest_10_files(){
     echo "* ${YELLOW}Show top 10 file in repo${NC}"
     echo "* ${YELLOW}Reference:${NC}"
     echo "*- https://stackoverflow.com/questions/9456550/how-can-i-find-the-n-largest-files-in-a-git-repository"
-    echo "*${MAGENTABRIGHT}NOTE: Might need `brew install coreutils` to install numfmt in macOS${NC}"
+    echo "*${MAGENTABRIGHT}NOTE: Might need ${YELLOW}brew install coreutils${MAGENTABRIGHT} to install numfmt in macOS${NC}"
     echo "*${BLUE}===========${NC}"
 
     git rev-list --objects --all \
