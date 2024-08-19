@@ -347,6 +347,22 @@ function git_remove_file_from_history(){
 }
 
 
+function git_checkout_all_branches(){
+
+    echo "${YELLOW}Checkout all branches to help mirroring a git repo${NC}"
+    echo "${YELLOW}Reference:${NC}"
+    echo "- https://stackoverflow.com/questions/37884832/git-push-all-branches-from-one-remote-to-another-remote"
+
+
+    echo "${BLUE}=============================${NC}"
+    for remote in `git branch -r | grep -v master `; do git checkout --track $remote ; done
+
+    echo "${BLUE}==Here is the branch list==${NC}"
+    git branch -a
+    git branch -a | wc -l
+}
+
+
 # Support functions for glf
 alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
 _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
