@@ -12,16 +12,18 @@
 
 ```
 git clone git@github.com:abassel/dotfiles.git
-cp -R dotfiles/.git ~/.git
-cd ~
-git config --local status.showUntrackedFiles no
-git diff
-git checkout
+cp -R dotfiles/.git ~/.git_dotfiles
 <OPEN AND CLOSE TERMINAL>
+cd ~
+config git config --local status.showUntrackedFiles no
+config git diff
+config git checkout
 # config <COMMAND>
 # ex:
 config git status
 config git diff
+NOTE:
+git status should fail if you dont add config
 ```
 
 

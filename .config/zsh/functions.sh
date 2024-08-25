@@ -493,7 +493,7 @@ function config() {
     command_to_execute="$@"
     echo -e "Executing command ${YELLOW}$command_to_execute${NC} in ${MAGENTABRIGHT}$HOME${NC}"
     #git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
-    bash -i -c "cd ~ && source ~/.bashrc && $command_to_execute"
+    bash -i -c "cd ~ && source ~/.bashrc && export GIT_DIR=~/.git_dotfiles; $command_to_execute"
 }
 
 
