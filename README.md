@@ -13,8 +13,9 @@
 ```
 git clone git@github.com:abassel/dotfiles.git
 cp -R dotfiles/.git ~/.git_dotfiles
-<OPEN AND CLOSE TERMINAL>
 cd ~
+git --git-dir=$HOME/.git_dotfiles checkout main --force
+<OPEN AND CLOSE TERMINAL>
 config git config --local status.showUntrackedFiles no
 config git diff
 config git checkout
