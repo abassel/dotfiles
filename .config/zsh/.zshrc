@@ -198,8 +198,8 @@ fi
 source ~/.config/scripts/fzf.zsh
 
 
-if [ -f ~/.secrets.sh ]; then
-    . ~/.secrets.sh
+if [ -f ~/.config/private/secrets.sh ]; then
+    . ~/.config/private/secrets.sh
 fi
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
