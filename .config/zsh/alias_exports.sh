@@ -81,6 +81,20 @@ alias ltttt='lsd -la --tree --depth 5 --group-directories-first'
 # tldr help (sudo pacman -S tealdeer)
 alias help='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 
+
+# pacman
+alias pacman_cache_delete_older_than_3='sudo paccache -r'
+alias pacman_delete_prog_and_dependnecies='sudo pacman -Rscn'
+alias pacman_download_updates='sudo pacman -Syuw --noconfirm'  # TODO: add to cron
+alias pacman_find_file='pacman -F'
+alias pacman_find_file_regex='pacman -Fx'
+alias pacman_info='pacman -Si'
+alias pacman_orphan_list='pacman -Qdtq'
+alias pacman_orphan_delete='sudo pacman -Qdtq | xargs -I{} sudo pacman -Rscn {} --noconfirm'
+alias pacman_search_package='pacman -Ss'
+alias pacman_update='sudo pacman -Suuy'
+
+
 # network
 alias ports='netstat -tulanp'
 
