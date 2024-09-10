@@ -93,6 +93,7 @@ alias pacman_orphan_list='pacman -Qdtq'
 alias pacman_orphan_delete='sudo pacman -Qdtq | xargs -I{} sudo pacman -Rscn {} --noconfirm'
 alias pacman_search_package='pacman -Ss'
 alias pacman_update='sudo pacman -Suuy'
+alias pacman_owned_by='pacman -Qoq'   # https://wiki.archlinux.org/title/Python
 
 
 # network
@@ -106,6 +107,7 @@ alias myip=ip_pub
 
 # AI
 alias aider_local="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --model=ollama/llama3.1 --no-auto-commits"
+alias aider_nvidia="OLLAMA_API_BASE=http://192.168.111.30:11434 aider --model=ollama/llama3.1 --no-auto-commits"
 
 # Git
 alias ga='git add'
