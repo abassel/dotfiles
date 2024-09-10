@@ -457,7 +457,9 @@ function notes() {
         code ~/notes
         return
     fi
-    command_to_execute="$@"
+
+    # Escape the double quotes in the command arguments
+    local command_to_execute=$(printf "%q " "$@" | sed 's/"/\\"/g')
     echo -e "Executing command ${YELLOW}$command_to_execute${NC} in ${MAGENTABRIGHT}$HOME/notes${NC}"
     #git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
     bash -i -c "cd '$HOME/notes' && source ~/.bashrc && $command_to_execute"
@@ -476,11 +478,12 @@ function etc() {
         cd /etc
         return
     fi
-    command_to_execute="$@"
-    my_home="$HOME"
+
+    # Escape the double quotes in the command arguments
+    local command_to_execute=$(printf "%q " "$@" | sed 's/"/\\"/g')
     echo -e "Executing command ${YELLOW}$command_to_execute${NC} in ${MAGENTABRIGHT}/etc${NC}"
     #git --git-dir=/etc/.git --work-tree=/etc $@
-    sudo bash -i -c "cd /etc && source $my_home/.bashrc && $command_to_execute"
+    sudo bash -i -c "cd /etc && source $HOME/.bashrc && $command_to_execute"
 }
 
 
@@ -490,7 +493,9 @@ function config() {
         code ~/
         return
     fi
-    command_to_execute="$@"
+
+    # Escape the double quotes in the command arguments
+    local command_to_execute=$(printf "%q " "$@" | sed 's/"/\\"/g')
     echo -e "Executing command ${YELLOW}$command_to_execute${NC} in ${MAGENTABRIGHT}$HOME${NC}"
     #git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
     bash -i -c "cd ~ && source ~/.bashrc && export GIT_DIR=~/.git_dotfiles; $command_to_execute"
