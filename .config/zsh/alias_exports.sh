@@ -1,7 +1,5 @@
 
-#Get OS name via uname
-# https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
-_myos=$(uname)
+
 
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
@@ -24,26 +22,33 @@ export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : 
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
 
 # https://unix.stackexchange.com/questions/83342/how-to-keep-dotfiles-system-agnostic
+# Get OS name via uname
+# https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+# Remove whitespace and convert to lowercase for matching
+_myos=$(echo "$(uname -a)" | tr '[:upper:]' '[:lower:]')
+
+# Define aliases based on OS
 case $_myos in
-  'Linux')   alias u='apt update -y; apt upgrade -y; echo -e "Consider ${YELLOW}apt dist-upgrade -y${NC}"' ;;
-  'FreeBSD') alias u='echo NOT IMPLEMENTED' ;;
-  'Darwin')  alias u='brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup; rm -rf $(brew --cache)' ;;
+  *"ubuntu"*|*"debian"* ) alias u='sudo apt update -y && sudo apt upgrade -y && echo -e "Consider ${YELLOW}apt dist-upgrade -y${NC}"' ;;
+  *"arch"*|*"manjaro"* ) alias u='sudo pacman -Syuu --noconfirm && yay -Syuu --noconfirm' ;;
+  *"darwin"* ) alias u='brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup; rm -rf $(brew --cache)' ;;
+  * ) echo "(Unknown OS) -> $_myos" ;;
 esac
 
 case $_myos in
-  'Linux')   alias open='xdg-open' ;;
+  *'linux'* )  alias open='xdg-open' ;;
 esac
 
 case $_myos in
-  'Linux')   alias code='vscodium' ;;
-  'Darwin')  alias code='/Applications/VSCodium.app/Contents/MacOS/Electron' ;;
+  *'linux'* )  alias code='vscodium' ;;
+  *'darwin'* ) alias code='/Applications/VSCodium.app/Contents/MacOS/Electron' ;;
 esac
 
 
 case $_myos in
-  'Linux')   alias o='xdg-open $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,:2233,," | sed "s,.com:,.com/," | sed "s,ssh://,,")' ;;
-  'FreeBSD') alias o='echo NOT IMPLEMENTED' ;;
-  'Darwin')  alias o='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,:2233,," | sed "s,.com:,.com/," | sed "s,ssh://,,")' ;;
+  *'linux'* ) alias o='xdg-open $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,:2233,," | sed "s,.com:,.com/," | sed "s,ssh://,,")' ;;
+  *'freebsd'* ) alias o='echo NOT IMPLEMENTED' ;;
+  *'darwin'* ) alias o='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,:2233,," | sed "s,.com:,.com/," | sed "s,ssh://,,")' ;;
 esac
 
 
