@@ -21,6 +21,13 @@ function pip_global() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
 
+function ai_list_models(){
+    # OLLAMA_HOST=192.168.111.30:11434 ollama list
+    echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
+    ollama list
+}
+
+
 function ai() {
     local model
     local question
@@ -36,8 +43,9 @@ function ai() {
 
     echo "${YELLOW}==============================${NC}"
     echo -e "Running model ${YELLOW}${model}${NC} for question:\n${MAGENTABRIGHT}$question${NC}"
+    echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
     echo ""
-    ollama run $model $question
+    OLLAMA_HOST=192.168.111.30:11434 ollama run $model $question
 }
 
 function ai_all() {
@@ -52,7 +60,7 @@ function ai_all() {
         exit 1
     fi
 
-    ollama list | awk 'NR>1 {print $1}' | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
+    ai_list_models | awk 'NR>1 {print $1}' | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
 
 }
 
@@ -68,7 +76,7 @@ function ai_code() {
         exit 1
     fi
 
-    ollama list | awk 'NR>1 {print $1}' | grep "code" | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
+    ai_list_models | awk 'NR>1 {print $1}' | grep "code" | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
 
 }
 
@@ -85,7 +93,7 @@ function ai_nocode() {
         exit 1
     fi
 
-    ollama list | awk 'NR>1 {print $1}' | grep -v "code" | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
+    ai_list_models | awk 'NR>1 {print $1}' | grep -v "code" | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
 
 }
 

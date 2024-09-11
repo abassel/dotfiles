@@ -113,6 +113,7 @@ alias myip=ip_pub
 # AI
 alias aider_local="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --model=ollama/llama3.1 --no-auto-commits"
 alias aider_nvidia="OLLAMA_API_BASE=http://192.168.111.30:11434 aider --model=ollama/llama3.1 --no-auto-commits"
+export OLLAMA_HOST=192.168.111.30:11434
 
 # Git
 alias ga='git add'
