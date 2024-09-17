@@ -99,6 +99,7 @@ alias pacman_orphan_delete='sudo pacman -Qdtq | xargs -I{} sudo pacman -Rscn {} 
 alias pacman_search_package='pacman -Ss'
 alias pacman_update='sudo pacman -Suuy'
 alias pacman_owned_by='pacman -Qoq'   # https://wiki.archlinux.org/title/Python
+alias pacman_find_browser="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
 
 # network
