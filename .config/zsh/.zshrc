@@ -24,10 +24,13 @@ compinit
 # CUSTOM History configuration
 HISTFILE="$HOME/Documents/zsh_history.$(hostname -s).txt"    # So it gets synced
 
+# https://zsh.sourceforge.io/Doc/Release/Options.html
 setopt BANG_HIST                # Treat the '!' character specially during expansion.
 unsetopt EXTENDED_HISTORY       # NOTE: also duplicated after oh-my-zsh
-setopt APPEND_HISTORY           # Append rather than write to history
-setopt appendhistory
+setopt SHARE_HISTORY            # Share history between all sessions.
+setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space.
+unsetopt APPEND_HISTORY         # Append rather than write to history
+unsetopt appendhistory
 unsetopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
 setopt HIST_EXPIRE_DUPS_FIRST   # Expire duplicate entries first when trimming history.
 setopt HIST_FIND_NO_DUPS        # Do not display a line previously found.
