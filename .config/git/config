@@ -19,3 +19,16 @@
 	rebase = true
 [init]
 	defaultBranch = main
+
+[color]
+status = auto
+
+# https://tylercipriani.com/blog/2016/09/21/git-config-include-and-colors/
+[color "status"]
+    header = "#999999"
+    # added = "#99cc99"
+    changed = "#ffcc66"
+    untracked = bold red
+    branch = "#2d2d2d" "#6699cc"
+    # Because the phrase "Detached HEAD" isn't unnerving enough
+    nobranch = bold ul blink "#f99157"
