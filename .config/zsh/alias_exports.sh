@@ -114,7 +114,8 @@ alias myip=ip_pub
 # AI
 alias aider_local="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --model=ollama/llama3.1 --no-auto-commits"
 alias aider_nvidia="OLLAMA_API_BASE=http://192.168.111.30:11434 aider --model=ollama/llama3.1 --no-auto-commits"
-export OLLAMA_HOST=192.168.111.30:11434
+export OLLAMA_HOST=192.168.111.30:11434 # for OLLAMA cli
+export OLLAMA_API_URL=http://192.168.111.30:11434 # for fabric
 
 # Git
 alias ga='git add'
@@ -138,6 +139,8 @@ alias i='git status --ignored'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gca='git commit --amend'
+alias git_ai='fabric --pattern summarize_git_diff'
+alias ai_git=git_ai
 # gb (git branch create) is defined as function
 # alias branch='gb'
 #alias b='gh browse'
