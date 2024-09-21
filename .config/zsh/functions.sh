@@ -504,9 +504,29 @@ function config() {
 
     # Escape the double quotes in the command arguments
     local command_to_execute=$(printf "%q " "$@" | sed 's/"/\\"/g')
-    echo -e "Executing command ${YELLOW}$command_to_execute${NC} in ${MAGENTABRIGHT}$HOME${NC}"
+    echo -e "Executing command ${YELLOW}$command_to_execute${NC} in ${MAGENTABRIGHT}$HOME/.git_dotfiles${NC}"
     #git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
     bash -i -c "cd ~ && source ~/.bashrc && export GIT_DIR=~/.git_dotfiles; $command_to_execute"
+}
+
+
+function config_sync(){
+    config s
+    echo "${YELLOW}======================${NC}"
+    config_private s
+    echo "${YELLOW}======================${NC}"
+    notes s
+    # etc s
+}
+
+
+function config_status(){
+    config gs
+    echo "${YELLOW}======================${NC}"
+    config_private gs
+    echo "${YELLOW}======================${NC}"
+    notes gs
+    # etc gs
 }
 
 
