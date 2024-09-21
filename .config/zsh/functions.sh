@@ -634,7 +634,7 @@ function extract () {
 #}
 
 # Git patch functions
-function copy_patch() {
+function git_copy_patch() {
     files2patch=($(git ls-files --others --exclude-standard))
 
     # put all untracked files in the patch
@@ -648,7 +648,7 @@ function copy_patch() {
     for file in $files2patch; do git reset HEAD $file; done
 }
 
-function copy_patch_no_untracked() {
+function git_copy_patch_no_untracked() {
 
     git diff HEAD | pbcopy
     echo "==== Generating patch in clipboard for the files below ===="
@@ -656,7 +656,7 @@ function copy_patch_no_untracked() {
 
 }
 
-function paste_patch() {
+function git_paste_patch() {
     pbpaste | git apply
 }
 
