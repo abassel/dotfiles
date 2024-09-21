@@ -510,23 +510,27 @@ function config() {
 }
 
 
+config_cmd() {
+    if [ $# -eq 0 ]; then
+        echo "Error: config_cmd requires at least one argument." >&2
+        return 1
+    fi
+
+    config $@
+    echo "${YELLOW}======================${NC}"
+    config_private $@
+    echo "${YELLOW}======================${NC}"
+    notes $@
+    # etc $@
+}
+
 function config_sync(){
-    config s
-    echo "${YELLOW}======================${NC}"
-    config_private s
-    echo "${YELLOW}======================${NC}"
-    notes s
-    # etc s
+    config_cmd s
 }
 
 
 function config_status(){
-    config gs
-    echo "${YELLOW}======================${NC}"
-    config_private gs
-    echo "${YELLOW}======================${NC}"
-    notes gs
-    # etc gs
+    config_cmd gs
 }
 
 
