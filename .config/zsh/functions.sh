@@ -708,43 +708,8 @@ function __update() {
 }
 
 
-function __help() {
-
-    echo "USE-AS-IS"
-    echo ""
-    echo "c -> clear"
-    echo "cd -> fuzzy navigate directories"
-    echo "cdf [<DIR>] -> fuzzy navigate ALL directories or "
-    echo "d -> fuzzy find directory"
-    echo "e -> exit"
-    echo "extract -> expand tar, zip etc."
-    echo "h -> fuzzy find history"
-    echo "sync_history -> merge all history"
-    echo "u -> update(brew or apt)"
-    echo ""
-    echo "-GIT/GITHUB FUNCTIONS-"
-    echo "copy_patch -> copy pending changes to clipboard"
-    echo "copy_patch_no_untracked -> copy pending changes to clipboard WITHOUT untracked files"
-    echo "paste_patch -> apply patch"
-    echo "gb -> switch to branch"
-    echo "gb <BRANCH> -> create remote branch and checkout it"
-    echo "gl -> show git log history"
-    echo "glX -> variants to show log history"
-    echo "glf -> fuzzy find git history"
-    echo "pr -> create pull request"
-    echo "s -> sync all branches"
-    echo "m -> git checkout main"
-    echo "review <PR_NUM> -> checkout given pr number"
-    echo ""
-    echo "-LINUX FUNCTIONS-"
-    echo "debug             - run strace for command"
-    echo "__update          - update rc scripts"
-    echo "__any_errors      - grep for errors"
-    echo "__wipe_all_logs   - wipe all your logs"
-    # echo "__track_etc - git init the /etc"
-    echo ""
-}
-
+# TODO: Generate a help automatically
+# function __help() {}
 
 # Openstack lxc functions for AIO
 export LXC_LOGS="True"
