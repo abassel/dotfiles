@@ -1,4 +1,5 @@
 {
+  "allowAnonymousTelemetry": false,
   "models": [
     {
       "title": "Llama3.1 8b",
