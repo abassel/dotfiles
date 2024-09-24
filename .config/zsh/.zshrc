@@ -135,3 +135,6 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 # Update PATH to include GOPATH and GOROOT binaries
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
+
+# Use new find so ai_fabric can work( requires brew install findutils)
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
