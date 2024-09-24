@@ -28,6 +28,20 @@ function ai_list_models(){
 }
 
 
+function ai_fabric() {
+
+    local piped_input
+    piped_input=$(cat)
+
+    local pattern
+    pattern=$(find ~/.config/fabric/patterns -type d -printf "%f\n" | fzf --select-1 --reverse --prompt "Select Fabric to run: " --preview-window="70%,right" --preview "bat --color=always ~/.config/fabric/patterns/{}/*")
+
+    # Run the fabric command with the selected pattern and input
+    echo "$piped_input" | fabric --pattern "$pattern"
+
+}
+
+
 function ai() {
     local model
     local question
