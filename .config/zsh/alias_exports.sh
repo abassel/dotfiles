@@ -36,7 +36,7 @@ case $_myos in
 esac
 
 case $_myos in
-  *'linux'* )  alias open='xdg-open' ;;
+  *'linux'* )  alias open='xdg-open' && alias pbcopy='wl-copy' && alias pbpaste='wl-paste';;
 esac
 
 case $_myos in
