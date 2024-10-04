@@ -139,6 +139,7 @@ alias i='git status --ignored'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gca='git commit --amend'
+alias gls='git ls-files'
 alias git_ai='fabric --pattern summarize_git_diff'
 alias ai_git=git_ai
 # gb (git branch create) is defined as function
