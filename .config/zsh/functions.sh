@@ -60,7 +60,7 @@ function ai() {
     echo -e "Running model ${YELLOW}${model}${NC} for question:\n${MAGENTABRIGHT}$question${NC}"
     echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
     echo ""
-    OLLAMA_HOST=192.168.111.30:11434 ollama run $model $question
+    ollama run $model $question
 }
 
 function ai_all() {
