@@ -534,9 +534,22 @@ config_cmd() {
     config $@
     echo "${YELLOW}======================${NC}"
     config_private $@
+
     echo "${YELLOW}======================${NC}"
-    notes $@
-    # etc $@
+    if [ -d "$HOME/notes/" ]; then
+        notes $@
+    else
+        echo "${YELLOW}skipping notes - Clone notes in ~ ${NC}"
+    fi
+
+    echo "${YELLOW}======================${NC}"
+    if [ -f "$HOME/.config/etc_track" ]; then
+        etc $@
+        echo "${MAGENTABRIGHT}rm ~/.config/etc_track${YELLOW} to disable etc tracking${NC}"
+    else
+        echo "${YELLOW}skipping etc - ${MAGENTABRIGHT}touch ~/.config/etc_track${YELLOW} to track ${NC}"
+    fi
+
 }
 
 function config_sync(){
