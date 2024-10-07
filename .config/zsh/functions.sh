@@ -688,6 +688,12 @@ function git_paste_patch() {
     pbpaste | git apply
 }
 
+
+if [ -f ~/.config/private/secrets.sh ]; then
+    . ~/.config/private/secrets.sh
+fi
+
+
 # Log manipulation functions
 function __end_note() {
     echo ""
