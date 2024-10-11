@@ -531,23 +531,28 @@ config_cmd() {
         return 1
     fi
 
-    config $@
+    if [ -f "$HOME/.config/etc_track" ]; then
+        etc $@
+        echo "${MAGENTABRIGHT}rm ~/.config/etc_track${YELLOW} to disable etc tracking${NC}"
+    else
+        echo "${YELLOW}skipping etc - ${MAGENTABRIGHT}touch ~/.config/etc_track${YELLOW} to track ${NC}"
+    fi
+
     echo "${YELLOW}======================${NC}"
-    config_private $@
+    if [ -d "$HOME/.git_config_private" ]; then
+        config_private $@
+    else
+        echo "${YELLOW}skipping config_private"
+    fi
+
+    echo "${YELLOW}======================${NC}"
+    config $@
 
     echo "${YELLOW}======================${NC}"
     if [ -d "$HOME/notes/" ]; then
         notes $@
     else
         echo "${YELLOW}skipping notes - Clone notes in ~ ${NC}"
-    fi
-
-    echo "${YELLOW}======================${NC}"
-    if [ -f "$HOME/.config/etc_track" ]; then
-        etc $@
-        echo "${MAGENTABRIGHT}rm ~/.config/etc_track${YELLOW} to disable etc tracking${NC}"
-    else
-        echo "${YELLOW}skipping etc - ${MAGENTABRIGHT}touch ~/.config/etc_track${YELLOW} to track ${NC}"
     fi
 
 }
