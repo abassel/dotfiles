@@ -112,10 +112,12 @@ alias ips="ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-9]\\+
 alias myip=ip_pub
 
 # AI
+# Requires entry for ollama.server in /etc/hosts -> sudo vi /etc/hosts
 alias aider_local="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --model=ollama/llama3.1 --no-auto-commits"
 alias aider_nvidia="OLLAMA_API_BASE=http://192.168.111.30:11434 aider --model=ollama/llama3.1 --no-auto-commits"
-export OLLAMA_HOST=192.168.111.30:11434 # for OLLAMA cli
-export OLLAMA_API_URL=http://192.168.111.30:11434 # for fabric
+alias aider_auto="OLLAMA_API_BASE=http://ollama.server:11434 aider --model=ollama/llama3.1 --no-auto-commits"
+export OLLAMA_HOST=ollama.server:11434 # for OLLAMA cli
+export OLLAMA_API_URL=http://ollama.server:11434 # for fabric
 
 # Git
 alias ga='git add'
