@@ -6,7 +6,7 @@
       "title": "Llama3.1 8b",
       "model": "llama3.1:latest",
       "contextLength": 4096,
-      "apiBase": "http://192.168.111.30:11434",
+      "apiBase": "http://ollama.server:11434",
       "provider": "ollama"
     }
   ],
@@ -20,7 +20,7 @@
   "tabAutocompleteModel": {
     "title": "Starcoder2 3b",
     "provider": "ollama",
-    "apiBase": "http://192.168.111.30:11434",
+    "apiBase": "http://ollama.server:11434",
     "model": "starcoder2:latest"
   },
   "contextProviders": [
