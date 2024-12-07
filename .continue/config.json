@@ -5,7 +5,7 @@
     {
       "title": "Llama3.1 8b",
       "model": "llama3.1:latest",
-      "contextLength": 4096,
+      "contextLength": 16000,
       "apiBase": "http://ollama.server:11434",
       "provider": "ollama"
     }
