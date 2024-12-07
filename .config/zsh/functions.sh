@@ -497,6 +497,56 @@ function gm2() {
     done
 }
 
+
+function repos_list() {
+  local dir=${1:-.} # Default to current directory if no argument is provided
+
+  # Find all .git directories
+  find "$dir" -type d -name ".git" | while read -r gitdir; do
+    repo_basedir=$(dirname "$gitdir")  # Get the base directory of the repo
+    relative_path=${repo_basedir#$dir/} # Get path relative to the root dir
+    remote_url=$(git -C "$repo_basedir" remote get-url origin 2>/dev/null || echo "")
+    if [[ -n $remote_url ]]; then
+      echo "$relative_path $remote_url"
+    fi
+  done | sort
+}
+
+
+function repos_clone() {
+  local base_dir=${1:-.} # Default to current directory if no argument is provided
+
+  while read -r relative_path remote_url; do
+    target_dir="$base_dir/$relative_path"
+    if [[ -d $target_dir ]]; then
+      echo "${MAGENTABRIGHT}Skipping existing directory:${NC} ${YELLOW}$target_dir${NC}"
+    else
+      echo "Cloning $remote_url into $target_dir"
+      git clone "$remote_url" "$target_dir"
+    fi
+  done
+}
+
+
+function repos() {
+    if [[ "$#" == 0 ]]; then
+        # see code alias in alias_exports.sh
+        cd ~/repos
+        target=$(find . -name .git -type d  -exec dirname {} \; | fzf)
+        printf "Changing to ${YELLOW}$target${NC}\n"
+        cd $target
+        return
+    fi
+
+    # Escape the double quotes in the command arguments
+    local command_to_execute=$(printf "%q " "$@" | sed 's/"/\\"/g')
+    echo -e "Executing command ${YELLOW}$command_to_execute${NC} in ${MAGENTABRIGHT}$HOME/repos${NC}"
+    #git --git-dir=$HOME/repos/.git --work-tree=$HOME/repos $@
+    bash -i -c "cd '$HOME/repos' && source ~/.bashrc && $command_to_execute"
+}
+alias r=repos
+
+
 function notes() {
     if [[ "$#" == 0 ]]; then
         # see code alias in alias_exports.sh
