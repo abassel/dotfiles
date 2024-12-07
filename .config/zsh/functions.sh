@@ -39,6 +39,11 @@ function ssh_kill(){
 }
 
 
+function ssh_new(){
+    ssh-keygen -o -a 5000 -t ed25519 -C "Alex-$(date +'%y_%m')"
+}
+
+
 function ai_list_models(){
     # OLLAMA_HOST=192.168.111.30:11434 ollama list
     echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
