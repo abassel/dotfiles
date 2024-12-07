@@ -454,12 +454,12 @@ function gm() {
         exit 1
     fi
 
-    echo "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${MAGENTABRIGHT}$PWD${NC}"
+    printf "Executing ${YELLOW}$command_to_execute${NC} in all repos under ${MAGENTA}$PWD${NC}\n"
 
     for repo in $(find . -name .git -type d  -exec dirname {} \;); do
-        echo "${YELLOW} $repo ${NC}"
+        printf "${YELLOW} $repo ${NC}\n"
         bash -i -c "cd '$repo' && source ~/.bashrc && $command_to_execute"
-        echo "${BLUE}===========${NC}"
+        printf "${BLUE}===========${NC}\n"
     done
 }
 
@@ -471,12 +471,12 @@ function gm1() {
         exit 1
     fi
 
-    echo "Executing ${YELLOW}$command_to_execute${NC} in repos one level under ${MAGENTABRIGHT}$PWD${NC}"
+    printf "Executing ${YELLOW}$command_to_execute${NC} in repos one level under ${MAGENTA}$PWD${NC}\n"
 
     for repo in $(find . -maxdepth 2 -name .git -type d  -exec dirname {} \;); do
-        echo "${YELLOW} $repo ${NC}"
+        printf "${YELLOW} $repo ${NC}\n"
         bash -i -c "cd '$repo' && source ~/.bashrc && $command_to_execute"
-        echo "${BLUE}===========${NC}"
+        printf "${BLUE}===========${NC}\n"
     done
 }
 
@@ -488,12 +488,12 @@ function gm2() {
         exit 1
     fi
 
-    echo "Executing ${YELLOW}$command_to_execute${NC} in repos two levels under ${MAGENTABRIGHT}$PWD${NC}"
+    printf "Executing ${YELLOW}$command_to_execute${NC} in repos two levels under ${MAGENTA}$PWD${NC}\n"
 
     for repo in $(find . -maxdepth 3 -name .git -type d  -exec dirname {} \;); do
-        echo "${YELLOW} $repo ${NC}"
+        printf "${YELLOW} $repo ${NC}\n"
         bash -i -c "cd '$repo' && source ~/.bashrc && $command_to_execute"
-        echo "${BLUE}===========${NC}"
+        printf "${BLUE}===========${NC}\n"
     done
 }
 
