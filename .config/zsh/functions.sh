@@ -21,6 +21,24 @@ function pip_global() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
 
+
+function ssh_init() {
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_ed25519
+  ssh-add -l
+}
+
+
+function ssh_list() {
+  ssh-add -l
+}
+
+
+function ssh_kill(){
+    ssh-agent -k
+}
+
+
 function ai_list_models(){
     # OLLAMA_HOST=192.168.111.30:11434 ollama list
     echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
