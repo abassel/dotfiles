@@ -44,6 +44,78 @@ function ssh_new(){
 }
 
 
+function t() {
+    # Define the default tmux session name (implicit, for managing windows)
+    local default_session="default"
+
+    # If no parameters are provided, list the windows and allow the user to select one
+    if [[ "$#" == 0 ]]; then
+        # Check if there are any windows in the session
+        local window_count=$(tmux list-windows -t "$default_session" 2>/dev/null | wc -l)
+        if [[ "$window_count" -eq 0 ]]; then
+            # No windows exist, print an error message and return
+            printf "${RED}Error: No windows available in the session.${NC}\n"
+            return
+        fi
+
+        printf "${YELLOW}Listing available windows...${NC}\n"
+        local window=$(tmux list-windows -t "$default_session" -F "#{window_name}" | fzf)
+        if [[ -n "$window" ]]; then
+            printf "${YELLOW}Switching to window ${NC}${MAGENTABRIGHT}$window${NC}\n"
+            sleep 1s
+            tmux select-window -t "$window"
+            tmux attach-session
+        else
+            printf "${MAGENTABRIGHT}No window selected.${NC}\n"
+        fi
+        return
+    fi
+
+    # Parameter provided: Create a new window and execute the command
+    local window_command="$*"
+
+    # Check if a tmux server is running; start one if not
+    if ! tmux has-session -t :0; then
+        printf "${YELLOW}Starting default tmux and creating new window${NC} ${MAGENTABRIGHT}$window${NC}\n"
+        tmux new-session -d -s "$default_session" -n "$window_command"
+        tmux attach-session
+        return
+    fi
+
+
+    printf "${YELLOW}Creating a new window for command: ${NC}${MAGENTABRIGHT}$window_command${NC}\n"
+    sleep 1s
+    tmux new-window -n "$window_command"
+    tmux attach-session
+}
+
+
+function trun() {
+    # Define the default tmux session name (implicit, for managing windows)
+    local default_session="default"
+
+    # Extract the first part of the input as the window name
+    local window=$(echo "$*" | awk '{print $1}')
+
+    # Extract the command to run (everything after the first space)
+    local command=$*
+
+    # Check if a tmux server is running; start one if not
+    if ! tmux has-session -t :0; then
+        printf "${YELLOW}Starting default tmux and creating new window${NC} ${MAGENTABRIGHT}$window${NC}\n"
+        tmux new-session -d -s "$default_session" -n "$window"
+        printf "${YELLOW}Sending command${NC} ${MAGENTABRIGHT}$command${NC}\n"
+        tmux send-keys "$command" C-m
+        return
+    fi
+
+    # Create a new tmux window with the extracted window name and run the command
+    tmux new-window -t "$default_session" -n "$window"
+    printf "${YELLOW}Sending command${NC} ${MAGENTABRIGHT}$command${NC}\n"
+    tmux send-keys "$command" C-m
+}
+
+
 function ai_list_models(){
     # OLLAMA_HOST=192.168.111.30:11434 ollama list
     echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
