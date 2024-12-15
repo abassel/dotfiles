@@ -21,6 +21,7 @@ export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
 export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC'
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
 
+
 # https://unix.stackexchange.com/questions/83342/how-to-keep-dotfiles-system-agnostic
 # Get OS name via uname
 # https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
@@ -49,6 +50,27 @@ case $_myos in
   *'linux'* ) alias o='xdg-open $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,:2233,," | sed "s,.com:,.com/," | sed "s,ssh://,,")' ;;
   *'freebsd'* ) alias o='echo NOT IMPLEMENTED' ;;
   *'darwin'* ) alias o='open -a "Safari" $(git remote get-url origin | sed "s,git@,https://," | sed "s,:2222,," | sed "s,:2233,," | sed "s,.com:,.com/," | sed "s,ssh://,,")' ;;
+esac
+
+
+# https://github.com/danielmiessler/fabric/tree/main#environment-variables
+# Golang environment variables for fabric ai/go/goproxy
+case $_myos in
+  *"darwin"* ) # Mac
+    export GOROOT=$(brew --prefix go)/libexec
+    export GOPATH=$HOME/go
+    export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
+    ;;
+
+  *'linux'* ) # Linux
+    export GOROOT=/usr/local/go
+    export GOPATH=$HOME/go
+    export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
+    ;;
+
+  *)
+    echo "Unsupported go configuration for OS: $_myos" >&2
+    ;;
 esac
 
 
