@@ -140,6 +140,7 @@ alias aider_nvidia="OLLAMA_API_BASE=http://192.168.111.30:11434 aider --model=ol
 alias aider_auto="OLLAMA_API_BASE=http://ollama.server:11434 aider --model=ollama/llama3.1 --no-auto-commits"
 export OLLAMA_HOST=ollama.server:11434 # for OLLAMA cli
 export OLLAMA_API_URL=http://ollama.server:11434 # for fabric
+alias ai_proxy_ollama="ssh -L 11434:localhost:11434 nvidia journalctl -f -u ollama"
 
 # Git
 alias ga='git add'
