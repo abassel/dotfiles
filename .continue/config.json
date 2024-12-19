@@ -3,10 +3,24 @@
   "disableIndexing": true,
   "models": [
     {
-      "title": "Llama3.1 8b",
-      "model": "llama3.1:latest",
-      "contextLength": 16000,
-      "apiBase": "http://ollama.server:11434",
+      "title": "qwen2.5-coder 14b ctx32k",
+      "model": "qwen2.5-coder:14b",
+      "contextLength": 32000,
+      "apiBase": "http://127.0.0.1:11434",
+      "provider": "ollama"
+    },
+    {
+      "title": "Llama3.1 8b ctx32k",
+      "model": "llama3.1:8b",
+      "contextLength": 32000,
+      "apiBase": "http://127.0.0.1:11434",
+      "provider": "ollama"
+    },
+    {
+      "title": "qwen2.5-coder 32b ctx32k",
+      "model": "qwen2.5-coder:32b",
+      "contextLength": 32000,
+      "apiBase": "http://127.0.0.1:11434",
       "provider": "ollama"
     }
   ],
@@ -20,8 +34,8 @@
   "tabAutocompleteModel": {
     "title": "Starcoder2 3b",
     "provider": "ollama",
-    "apiBase": "http://ollama.server:11434",
-    "model": "starcoder2:latest"
+    "apiBase": "http://127.0.0.1:11434",
+    "model": "starcoder2:3b"
   },
   "contextProviders": [
     {
