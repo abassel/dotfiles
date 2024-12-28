@@ -135,12 +135,13 @@ alias myip=ip_pub
 
 # AI
 # Requires entry for ollama.server in /etc/hosts -> sudo vi /etc/hosts
-alias aider_local="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --model=ollama/llama3.1 --no-auto-commits"
-alias aider_nvidia="OLLAMA_API_BASE=http://192.168.111.30:11434 aider --model=ollama/llama3.1 --no-auto-commits"
-alias aider_auto="OLLAMA_API_BASE=http://ollama.server:11434 aider --model=ollama/llama3.1 --no-auto-commits"
-export OLLAMA_HOST=ollama.server:11434 # for OLLAMA cli
-export OLLAMA_API_URL=http://ollama.server:11434 # for fabric
+alias aider_ollama="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --model=ollama/llama3.1 --no-auto-commits"
+alias aider_qwen="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --model=ollama/qwen2.5-coder:14b --no-auto-commits"
+# Using ssh tunnel instead of ollama.server
+export OLLAMA_HOST=127.0.0.1:11434 # for OLLAMA cli
+export OLLAMA_API_URL=http://127.0.0.1:11434 # for fabric
 alias ai_proxy_ollama="ssh -L 11434:localhost:11434 nvidia journalctl -f -u ollama"
+alias ai_create_pattern='fabric --pattern create_pattern'
 
 # Git
 alias ga='git add'
@@ -163,6 +164,9 @@ alias gsi='git status --ignored'
 alias i='git status --ignored'
 alias gd='git diff'
 alias gds='git diff --staged'
+alias gds_unified10='git diff --staged --unified=10'
+alias gds_unified20='git diff --staged --unified=20'
+alias gds_funct_context='git diff --staged --function-context'
 alias gca='git commit --amend'
 alias gls='git ls-files'
 alias git_ai='fabric --pattern summarize_git_diff'
