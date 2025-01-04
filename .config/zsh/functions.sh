@@ -208,6 +208,39 @@ function ai_nocode() {
 }
 
 
+function git_ai_report() {
+
+  local models
+  local lines
+
+  # Count the number of lines in the diff and trim extra spaces
+  lines=$(git diff main@{1}...main@{0} --unified=3 | wc -l | xargs)
+  printf "Diff has ${YELLOW}$lines${NC} lines\n"
+
+  if [[ "$#" == 0 ]]; then
+    models=$(ollama list | tail -n +2 | sort -t ':' -k 2 -n | awk '{print $1}' | fzf --multi --ansi --preview "echo {}" --bind 'tab:toggle,space:toggle' \
+      --prompt="Select models: " --header="Use TAB/SPACE to toggle selection" \
+      --pointer="> " --marker="✔" | sort -t ':' -k 2 -n)
+  else
+    models="$1"
+  fi
+
+  # Check if any models were selected
+  if [[ -z "$models" ]]; then
+    printf "${RED}No models selected.${NC}"
+    return 1
+  fi
+
+  printf "Selected models: $models\n"
+
+  # Iterate over each selected model and execute the command
+  echo "$models" | while read -r model; do
+    printf "${BLUE}===========${NC}\n"
+    printf "${YELLOW}Running for model: ${MAGENTA}$model${NC}\n"
+    git diff main@{1} main@{0} --unified=3 | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 16000
+  done
+}
+
 # select branch via fzf
 function __branch() {
   local tags branches target
@@ -276,9 +309,19 @@ function review() {
 
 
 function git_add_repo() {
+
+    # Check if the correct number of arguments is provided
+    if [[ $# -ne 2 ]]; then
+        printf "${RED}Error: Two parameters are required (repository URL and target directory).${NC}\n"
+        printf 'Example usage\n'
+        printf 'git_add_repo "https://github.com/example/repo.git" "my_repo"\n'
+        return 1
+    fi
+
     # Define your repository URL and target directory
     local repo_url="$1"
     local target_dir="$2"
+
 
     # TODO: support sha when it is provided.
 
@@ -308,8 +351,6 @@ function git_add_repo() {
     echo "Repository cloned and content committed with SHA reference: $sha_ref"
 }
 
-# Example usage
-# git_add_repo "https://github.com/example/repo.git" "my_repo"
 
 # TODO: Merge with function below to autodetect master or main
 function git_merge_external_repo_in_subdir_from_master(){
