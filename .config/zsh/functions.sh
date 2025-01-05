@@ -241,6 +241,46 @@ function git_ai_report() {
   done
 }
 
+
+function git_ai_report_main_vs_branch() {
+  # refuse to run in main branch
+  if [ "$(git branch --show-current)" = "main" ]; then
+      printf "${RED}Cannot run while on main branch${NC}\n"
+      return 1
+  fi
+
+  local models
+  local lines
+
+  # Count the number of lines in the diff and trim extra spaces
+  lines=$(git diff main...HEAD --unified=3 | wc -l | xargs)
+  printf "Diff has ${YELLOW}$lines${NC} lines\n"
+
+  if [[ "$#" == 0 ]]; then
+    models=$(ollama list | tail -n +2 | sort -t ':' -k 2 -n | awk '{print $1}' | fzf --multi --ansi --preview "echo {}" --bind 'tab:toggle,space:toggle' \
+      --prompt="Select models: " --header="Use TAB/SPACE to toggle selection" \
+      --pointer="> " --marker="✔" | sort -t ':' -k 2 -n)
+  else
+    models="$1"
+  fi
+
+  # Check if any models were selected
+  if [[ -z "$models" ]]; then
+    printf "${RED}No models selected.${NC}"
+    return 1
+  fi
+
+  printf "Selected models: $models\n"
+
+  # Iterate over each selected model and execute the command
+  echo "$models" | while read -r model; do
+    printf "${BLUE}===========${NC}\n"
+    printf "${YELLOW}Running for model: ${MAGENTA}$model${NC}\n"
+    git diff main HEAD --unified=3 | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 16000
+  done
+}
+
+
 # select branch via fzf
 function __branch() {
   local tags branches target
