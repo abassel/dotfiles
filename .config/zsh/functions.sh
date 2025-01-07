@@ -564,7 +564,7 @@ function git_checkout_all_branches(){
 
 
     echo "${BLUE}=============================${NC}"
-    for remote in `git branch -r | grep -v master `; do git checkout --track $remote ; done
+    for remote in `git branch -r | grep -v master | grep -v main | grep -v HEAD`; do git checkout --track $remote ; done
 
     echo "${BLUE}==Here is the branch list==${NC}"
     git branch -a
