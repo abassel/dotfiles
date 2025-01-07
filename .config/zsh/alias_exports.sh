@@ -169,7 +169,7 @@ alias gds_unified20='git diff --staged --unified=20'
 alias gds_funct_context='git diff --staged --function-context'
 alias gca='git commit --amend'
 alias gls='git ls-files'
-alias git_ai='fabric --pattern summarize_git_diff'
+alias git_ai="sed 's/{{/{ {/g' | fabric --pattern summarize_git_diff"
 alias ai_git=git_ai
 # gb (git branch create) is defined as function
 # alias branch='gb'

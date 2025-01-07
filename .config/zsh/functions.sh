@@ -237,7 +237,7 @@ function git_ai_report() {
   echo "$models" | while read -r model; do
     printf "${BLUE}===========${NC}\n"
     printf "${YELLOW}Running for model: ${MAGENTA}$model${NC}\n"
-    git diff main@{1} main@{0} --unified=3 | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 16000
+    git diff main@{1} main@{0} --unified=3 | sed 's/{{/{ {/g' | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 16000
   done
 }
 
@@ -276,7 +276,7 @@ function git_ai_report_main_vs_branch() {
   echo "$models" | while read -r model; do
     printf "${BLUE}===========${NC}\n"
     printf "${YELLOW}Running for model: ${MAGENTA}$model${NC}\n"
-    git diff main HEAD --unified=3 | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 16000
+    git diff main...HEAD --unified=3 | sed 's/{{/{ {/g' | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 16000
   done
 }
 
