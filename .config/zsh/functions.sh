@@ -208,6 +208,16 @@ function ai_nocode() {
 }
 
 
+function s_report() {
+  local prev_hash=$(git rev-parse HEAD)
+  hub sync all
+  local curr_hash=$(git rev-parse HEAD)
+  if [ "$prev_hash" != "$curr_hash" ]; then
+    trun git_ai_report "llama3.1:8b"
+  fi
+}
+
+
 function git_ai_report() {
 
   local models
