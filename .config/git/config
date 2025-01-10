@@ -2,12 +2,14 @@
 	name = Alexandre Bassel
 	email = 11035784+abassel@users.noreply.github.com
 [gitreview]
-     username = abassel
+    username = abassel
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[pager]
+	diff = false
 [core]
 	ignorecase = false
 	pager = cat
@@ -17,6 +19,14 @@
 	lineNumber = true
 [pull]
 	rebase = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[rebase]
+	committerDateIsAuthorDate = true
+	rebaseMerges = true
 [init]
 	defaultBranch = main
 
