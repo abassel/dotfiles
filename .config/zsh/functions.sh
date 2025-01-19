@@ -661,6 +661,86 @@ function gm2() {
 }
 
 
+function repos_fork() {
+    # Check if we're in a git repository
+    if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+        echo "${RED}Error: Not in a git repository${NC}"
+        return 1
+    fi
+
+    # Get the current repository name
+    local repo_name=$(basename $(git rev-parse --show-toplevel))
+    local new_name="__${repo_name}__FORK"
+    local current_dir=$(pwd)
+    local parent_dir=$(dirname $(git rev-parse --show-toplevel))
+
+
+    # Create new directory with _FORK suffix
+    # echo "Creating new directory: $new_name"
+    cd $parent_dir
+    if [ -d "$new_name" ]; then
+        echo "${RED}Error: Directory $new_name already exists${NC}"
+        cd $current_dir
+        return 1
+    fi
+
+    echo "${YELLOW}Duplicating repository as ${RED}'${new_name}'${RED}..."
+    cp -r "$repo_name" "$new_name"
+
+    # Change to the new directory
+    cd $new_name
+
+    gh repo fork --remote=true
+
+    echo "${YELLOW}Repository duplicated and forked successfully as ${RED}$new_name${NC}"
+    git remote -v
+}
+alias f=repos_fork
+
+
+function repos_fork_delete() {
+    local remote_url=$(git remote get-url origin 2>/dev/null)
+
+    if [[ -z "$remote_url" ]]; then
+        echo "${RED}Not a git repository or no remote origin found${NC}"
+        return 1
+    fi
+
+    # Handle SSH URLs (git@github.com:owner/repo.git)
+    if [[ "$remote_url" =~ ^git@ ]]; then
+        remote_url=${remote_url#git@*:}
+    else
+        # Handle HTTPS URLs (https://github.com/owner/repo.git)
+        remote_url=${remote_url#https://*/}
+    fi
+
+    # Remove .git suffix if present
+    remote_url=${remote_url%.git}
+
+    # Check if repository is a fork
+    if ! gh repo view "$remote_url" --json isFork -q '.isFork' | grep -q "true"; then
+        echo "${RED}Repository is not a fork. Aborting deletion.${NC}"
+        return 1
+    fi
+
+    echo "${GREEN}Repository ${YELLOW}$remote_url${GREEN} is a fork${NC}"
+    gh repo delete "$remote_url" --yes
+
+    if [[ $? -eq 0 ]]; then
+        # If deletion successful, remove local directory
+        echo "Repository ${YELLOW}$remote_url${GREEN} successfully ${RED}deleted.${NC}"
+        local local_pwd=$PWD
+        cd ..
+        rm -rf $local_pwd
+        echo "${GREEN}Local repository $local_pwd removed${NC}"
+    else
+        echo "${RED}Failed to delete the repository ${YELLOW}$owner/$repo.${NC}"
+    fi
+
+}
+alias fd=repos_fork_delete
+
+
 function repos_list() {
   local dir=${1:-.} # Default to current directory if no argument is provided
 
