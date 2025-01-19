@@ -189,6 +189,9 @@ alias gpop='git stash pop'
 # https://softwaredoug.com/blog/2022/11/09/idiot-proof-git-aliases.html
 alias gp="git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
 alias rebasei='git rebase -v -i $(gp)'
+alias git_rebase='git rebase --rebase-merges --committer-date-is-author-date'
+alias rebase='git_rebase'
+alias r='git_rebase'
 alias prs="gh pr list --json number,title,author,updatedAt,mergeStateStatus,url --template '{{range .}}{{tablerow (printf \"#%v\" .number | autocolor \"green\") .title .author.login (timeago .updatedAt) .mergeStateStatus .url}}{{end}}'"
 
 # alias gp='git show-branch \
