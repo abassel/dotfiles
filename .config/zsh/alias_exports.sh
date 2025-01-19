@@ -238,6 +238,7 @@ export FZF_DEFAULT_OPTS="
 -i
 --ansi
 --bold
+--color=fg+:bright-yellow
 --reverse
 --info=inline
 --height=80%
