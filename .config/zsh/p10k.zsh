@@ -39,6 +39,7 @@
     dir                     # current directory
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     vcs                     # git status
+    gitsec
     # =========================[ Line #2 ]=========================
     newline                 # \n
     # prompt_char           # prompt symbol
@@ -1685,6 +1686,20 @@
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
+  }
+
+  function prompt_gitsec() {
+      DIRNAME=$(basename "$PWD")
+      if [ ! -e "$HOME/repos/gitea/abassel/gsec/$DIRNAME" ]; then
+          return
+      fi
+      # TRACK INSIDE GSEC
+      gsec_count=$(git status --short | grep -q -v "^??" | wc -l | xargs)
+      if [ "$gsec_count" -eq 0 ]; then
+          p10k segment -b 2 -f 0 -i '🎁' -t 'gsec'  # green background
+      else
+          p10k segment -b 1 -f 0 -i '🎁' -t 'gsec'  # red background
+      fi
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
