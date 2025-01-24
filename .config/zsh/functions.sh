@@ -144,7 +144,7 @@ function ai() {
 
     # If only one parameter is specified, assume the other one is default
     if [[ $# == 1 ]]; then
-        model="llama3.1"
+        model="llama3.1:8b"
         question=$1
     else
         model=$1
@@ -157,6 +157,7 @@ function ai() {
     echo ""
     ollama run $model $question
 }
+
 
 function ai_all() {
 
@@ -173,6 +174,7 @@ function ai_all() {
     ai_list_models | awk 'NR>1 {print $1}' | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
 
 }
+
 
 function ai_code() {
 
@@ -213,8 +215,13 @@ function s_report() {
   hub sync all
   local curr_hash=$(git rev-parse HEAD)
   if [ "$prev_hash" != "$curr_hash" ]; then
-    trun git_ai_report "llama3.1:8b"
+    trun git_ai_report "qwen2.5-coder:7b"
   fi
+}
+
+
+function git_ai_report_comprehensive() {
+    trun 'git_ai_report "llava:7b"; git_ai_report "llama3.2-vision:11b"'
 }
 
 
@@ -247,7 +254,7 @@ function git_ai_report() {
   echo "$models" | while read -r model; do
     printf "${BLUE}===========${NC}\n"
     printf "${YELLOW}Running for model: ${MAGENTA}$model${NC}\n"
-    git diff main@{1} main@{0} --unified=3 | sed 's/{{/{ {/g' | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 16000
+    git diff main@{1} main@{0} --unified=3 | sed 's/{{/{ {/g' | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 32000
   done
 }
 
@@ -286,7 +293,7 @@ function git_ai_report_main_vs_branch() {
   echo "$models" | while read -r model; do
     printf "${BLUE}===========${NC}\n"
     printf "${YELLOW}Running for model: ${MAGENTA}$model${NC}\n"
-    git diff main...HEAD --unified=3 | sed 's/{{/{ {/g' | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 16000
+    git diff main...HEAD --unified=3 | sed 's/{{/{ {/g' | fabric --model "$model" --pattern summarize_git_diff --temperature 0 --modelContextLength 32000
   done
 }
 
@@ -310,6 +317,7 @@ function __branch() {
   git checkout $(awk '{print $2}' <<<"$target" )
 }
 
+
 function gb() {
     if [[ "$#" == 0 ]]; then
         __branch;
@@ -322,10 +330,12 @@ function gb() {
     git commit --allow-empty -m "🏁 Starting $1 $(date +%b/%d_%H:%M:%S)"
 }
 
+
 function ggrep() {
     echo -e "${YELLOW} Searching for ${NC} $1 \n"
     git grep $1 $(git rev-list --all)
 }
+
 
 function gauthor() {
     # Git Extras - brew install git-extras

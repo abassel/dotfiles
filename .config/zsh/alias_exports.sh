@@ -135,7 +135,7 @@ alias myip=ip_pub
 
 # AI
 # Requires entry for ollama.server in /etc/hosts -> sudo vi /etc/hosts
-alias aider_ollama="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --model=ollama/llama3.1 --no-auto-commits"
+alias aider_ollama="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --model=ollama/llama3.1:8b --no-auto-commits"
 alias aider_qwen="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --model=ollama/qwen2.5-coder:14b --no-auto-commits"
 # Using ssh tunnel instead of ollama.server
 export OLLAMA_HOST=127.0.0.1:11434 # for OLLAMA cli
@@ -169,7 +169,7 @@ alias gds_unified20='git diff --staged --unified=20'
 alias gds_funct_context='git diff --staged --function-context'
 alias gca='git commit --amend'
 alias gls='git ls-files'
-alias git_ai="sed 's/{{/{ {/g' | fabric --pattern summarize_git_diff"
+alias git_ai="sed 's/{{/{ {/g'  | fabric --model 'qwen2.5-coder:7b' --pattern summarize_git_diff --temperature 0 --modelContextLength 32000"
 alias ai_git=git_ai
 # gb (git branch create) is defined as function
 # alias branch='gb'
