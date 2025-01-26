@@ -124,6 +124,11 @@ alias pacman_owned_by='pacman -Qoq'   # https://wiki.archlinux.org/title/Python
 alias pacman_find_browser="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
 
+# python pip
+alias pip_list_outdated='pip list --outdated'
+alias pip_upgrade_outdated='pip install -U $(pip list -o | cut -f1 -d" " | tail -n +3)'
+
+
 # network
 alias ports='netstat -tulanp'
 
