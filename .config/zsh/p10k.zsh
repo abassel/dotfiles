@@ -39,7 +39,7 @@
     dir                     # current directory
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     vcs                     # git status
-    gitsec
+    gsec
     # =========================[ Line #2 ]=========================
     newline                 # \n
     # prompt_char           # prompt symbol
@@ -1688,19 +1688,30 @@
     p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
   }
 
-  function prompt_gitsec() {
-      DIRNAME=$(basename "$PWD")
-      if [ ! -e "$HOME/repos/gitea/abassel/gsec/$DIRNAME" ]; then
-          return
-      fi
-      # TRACK INSIDE GSEC
-      gsec_count=$(git status --short | grep -q -v "^??" | wc -l | xargs)
-      if [ "$gsec_count" -eq 0 ]; then
-          p10k segment -b 2 -f 0 -i '🎁' -t 'gsec'  # green background
-      else
-          p10k segment -b 1 -f 0 -i '🎁' -t 'gsec'  # red background
-      fi
-  }
+function prompt_gsec() {
+    DIRNAME=$(basename "$PWD")
+    GSEC_DIR="$HOME/repos/gitea/abassel/gsec/$DIRNAME"
+
+    if [ ! -e "$GSEC_DIR" ]; then
+      return
+    fi
+
+    # Use git directly to get the status, including untracked, modified, deleted, and moved files
+    gsec_changes_count=$(git -C "$GSEC_DIR" status --short | grep -E "^( M| M|A|D|R|C|\?\?)" | wc -l | xargs)
+
+    # Check for symbolic links in the current directory that point to $HOME/repos/gitea/abassel/gsec
+    symlink_count=$(ls -la | grep "^l" | awk '{print $NF}' | grep "/gsec/" | wc -l | xargs)
+
+    # Updated block to show appropriate background colors
+    if [ "$gsec_changes_count" -gt 0 ] && [ "$symlink_count" -gt 0 ]; then
+      p10k segment -b 1 -f 7 -i '🎁' -t '%Bgsec%b'  # red background with bold white font
+    elif [ "$symlink_count" -gt 0 ]; then
+      p10k segment -b 4 -f 7 -i '🎁' -t '%Bgsec%b'  # blue background with bold white font
+    else
+      p10k segment -b 2 -f 0 -i '🎁' -t 'gsec'  # green background (default case)
+    fi
+}
+
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See
