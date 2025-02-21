@@ -116,6 +116,20 @@ function trun() {
 }
 
 
+function editors() {
+    local target_path="${1:-.}"  # Use provided path or default to "." if not provided
+
+    zed "$target_path"
+    cursor "$target_path"
+    windsurf "$target_path"
+    aide "$target_path"
+    trun code "$target_path"
+    trun /Applications/PyCharm.app/Contents/MacOS/pycharm "$target_path"
+    # TODO: run aider
+}
+alias ed=editors
+
+
 function ai_list_models(){
     # OLLAMA_HOST=192.168.111.30:11434 ollama list
     echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
