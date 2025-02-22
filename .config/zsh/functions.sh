@@ -132,7 +132,7 @@ alias ed=editors
 
 function ai_list_models(){
     # OLLAMA_HOST=192.168.111.30:11434 ollama list
-    echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
+    # echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
     ollama list
 }
 
@@ -165,11 +165,17 @@ function ai() {
         question=$2
     fi
 
-    echo "${YELLOW}==============================${NC}"
-    echo -e "Running model ${YELLOW}${model}${NC} for question:\n${MAGENTABRIGHT}$question${NC}"
-    echo "** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}"
-    echo ""
-    ollama run $model $question
+    echo "\n"
+    echo "${YELLOW}-----------------------------${NC}"
+    echo -e "# ${YELLOW}${model}${NC}\n"
+    # Only print the question if NOQUESTION is NOT set
+    if [[ -z "$NOQUESTION" ]]; then
+        echo "\n** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}\n"
+        echo -e "\n**question:**\n${MAGENTABRIGHT}$question${NC}\n"
+        echo -e "\n----"
+    fi
+    echo -e "\n**answer:**\n"
+    llm -m $model $question
 }
 
 
@@ -185,7 +191,14 @@ function ai_all() {
         exit 1
     fi
 
-    ai_list_models | awk 'NR>1 {print $1}' | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
+    echo "\n** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}\n"
+    echo -e "\n**question:**\n${MAGENTABRIGHT}$question${NC}\n"
+
+    models=("${(@f)$(ai_list_models | awk 'NR>1 {print $1}' | sort -t ':' -k 2 -n)}")
+
+    for model in $models; do
+        NOQUESTION=1 ai "$model" "$question"
+    done
 
 }
 
@@ -202,7 +215,14 @@ function ai_code() {
         exit 1
     fi
 
-    ai_list_models | awk 'NR>1 {print $1}' | grep "code" | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
+    echo "\n** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}\n"
+    echo -e "\n**question:**\n${MAGENTABRIGHT}$question${NC}\n"
+
+    models=("${(@f)$(ai_list_models | awk 'NR>1 {print $1}' | grep "code" | sort -t ':' -k 2 -n)}")
+
+    for model in $models; do
+        NOQUESTION=1 ai "$model" "$question"
+    done
 
 }
 
@@ -219,7 +239,14 @@ function ai_nocode() {
         exit 1
     fi
 
-    ai_list_models | awk 'NR>1 {print $1}' | grep -v "code" | sort -t ':' -k 2 -n | xargs -I% zsh -c "source ~/.config/zsh/.zshrc && ai % '$question'"
+    echo "\n** NOTE: Using ${YELLOW}OLLAMA_HOST=$OLLAMA_HOST${NC}\n"
+    echo -e "\n**question:**\n${MAGENTABRIGHT}$question${NC}\n"
+
+    models=("${(@f)$(ai_list_models | awk 'NR>1 {print $1}' | grep -v "code" | sort -t ':' -k 2 -n)}")
+
+    for model in $models; do
+        NOQUESTION=1 ai "$model" "$question"
+    done
 
 }
 
