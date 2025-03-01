@@ -142,6 +142,43 @@ alias myip=ip_pub
 # Requires entry for ollama.server in /etc/hosts -> sudo vi /etc/hosts
 alias aider_ollama="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --model=ollama/llama3.1:8b --no-auto-commits"
 alias aider_qwen="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --model=ollama/qwen2.5-coder:14b --no-auto-commits"
+
+alias aider_r1_qwen="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --no-auto-commits --no-gitignore \
+    --model 'ollama/deepseek-r1:8b' \
+    --architect \
+    --reasoning-effort high \
+    --editor-model 'ollama_chat/qwen2.5-coder:14b' \
+    --no-detect-urls \
+    --no-auto-commit \
+    --yes-always """
+
+alias aider_r1_llama31="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --no-auto-commits --no-gitignore \
+    --model 'ollama/deepseek-r1:8b' \
+    --architect \
+    --reasoning-effort high \
+    --editor-model 'ollama_chat/llama3.1:8b' \
+    --no-detect-urls \
+    --no-auto-commit \
+    --yes-always "
+
+alias aider_r1_llava="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --no-auto-commits --no-gitignore \
+    --model 'ollama/deepseek-r1:8b' \
+    --architect \
+    --reasoning-effort high \
+    --editor-model 'ollama_chat/llava:7b' \
+    --no-detect-urls \
+    --no-auto-commit \
+    --yes-always """
+
+alias aider_r1_llamavision="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --no-auto-commits --no-gitignore \
+    --model 'ollama/deepseek-r1:8b' \
+    --architect \
+    --reasoning-effort high \
+    --editor-model 'ollama_chat/llama3.2-vision:11b' \
+    --no-detect-urls \
+    --no-auto-commit \
+    --yes-always """
+
 # Using ssh tunnel instead of ollama.server
 export OLLAMA_HOST=127.0.0.1:11434 # for OLLAMA cli
 export OLLAMA_API_URL=http://127.0.0.1:11434 # for fabric
