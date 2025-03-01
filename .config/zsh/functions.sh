@@ -841,6 +841,21 @@ function repos() {
 alias r=repos
 
 
+function blog() {
+    if [[ "$#" == 0 ]]; then
+        # see code alias in alias_exports.sh
+        code "$HOME/repos/github_abassel/abassel/"
+        return
+    fi
+
+    # Escape the double quotes in the command arguments
+    local command_to_execute=$(printf "%q " "$@" | sed 's/"/\\"/g')
+    echo -e "Executing command ${YELLOW}$command_to_execute${NC} in ${MAGENTABRIGHT}$HOME/notes${NC}"
+    #git --git-dir=$HOME/notes/.git --work-tree=$HOME/notes $@
+    bash -i -c "cd '$HOME/repos/github_abassel/abassel/' && source ~/.bashrc && $command_to_execute"
+}
+
+
 function notes() {
     if [[ "$#" == 0 ]]; then
         # see code alias in alias_exports.sh
