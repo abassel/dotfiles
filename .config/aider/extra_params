@@ -1,0 +1,3 @@
+- name: aider/extra_params
+  extra_params:
+    num_ctx: 16000

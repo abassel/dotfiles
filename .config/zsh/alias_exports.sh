@@ -144,6 +144,7 @@ alias aider_ollama="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-dis
 alias aider_qwen="OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --model=ollama/qwen2.5-coder:14b --no-auto-commits"
 
 alias aider_r1_qwen="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --no-auto-commits --no-gitignore \
+    --model-settings-file ~/.config/aider/extra_params \
     --model 'ollama/deepseek-r1:8b' \
     --architect \
     --reasoning-effort high \
@@ -153,6 +154,7 @@ alias aider_r1_qwen="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-
     --yes-always """
 
 alias aider_r1_llama31="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --no-auto-commits --no-gitignore \
+    --model-settings-file ~/.config/aider/extra_params \
     --model 'ollama/deepseek-r1:8b' \
     --architect \
     --reasoning-effort high \
@@ -162,6 +164,7 @@ alias aider_r1_llama31="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analyti
     --yes-always "
 
 alias aider_r1_llava="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --no-auto-commits --no-gitignore \
+    --model-settings-file ~/.config/aider/extra_params \
     --model 'ollama/deepseek-r1:8b' \
     --architect \
     --reasoning-effort high \
@@ -171,6 +174,7 @@ alias aider_r1_llava="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics
     --yes-always """
 
 alias aider_r1_llamavision="""OLLAMA_API_BASE=http://127.0.0.1:11434 aider --analytics-disable --no-auto-commits --no-gitignore \
+    --model-settings-file ~/.config/aider/extra_params \
     --model 'ollama/deepseek-r1:8b' \
     --architect \
     --reasoning-effort high \
