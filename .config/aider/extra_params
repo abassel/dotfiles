@@ -1,3 +1,4 @@
 - name: aider/extra_params
+  edit_format: diff
   extra_params:
     num_ctx: 16000
