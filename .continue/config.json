@@ -88,5 +88,9 @@
       "name": "commit",
       "description": "Generate a git commit message"
     }
-  ]
+  ],
+  "embeddingsProvider": {
+    "provider": "ollama",
+    "model": "nomic-embed-text:latest"
+  }
 }
